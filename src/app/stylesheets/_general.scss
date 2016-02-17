@@ -1,0 +1,17 @@
+.bec-logo {
+    height: 50px;
+    width: 50px;
+}
+
+a.built-by {
+    text-decoration: none;
+    color: $text-color;
+    padding: 5px;
+    h5 {
+        margin-bottom: 5px;
+    }
+    img {
+        height: auto;
+        width: 100%;
+    }
+}

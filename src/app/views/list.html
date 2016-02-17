@@ -1,0 +1,29 @@
+<!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+<div class="table-responsive-vertical md-whiteframe-z1">
+    <table id="table" class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Meter</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="data in siteData track by $index">
+            <td data-title="ID">{{data.shortcode}}</td>
+            <td data-title="Issue">{{data.name}}</td>
+            <td data-title="Status">{{data.meterSerial}}</td>
+            <td data-title="View">
+                <md-button class="md-raised md-primary" ui-sref='home.site({shortcode: data.shortcode})'>View</md-button>
+            </td>
+            <!-- <td data-title="Progress">
+                <md-progress-linear class="table-progress {{data.class}}"
+                                    md-mode="determinate"
+                                    value={{data.progress}}>
+                </md-progress-linear>
+            </td> -->
+        </tr>
+        </tbody>
+    </table>
+</div>

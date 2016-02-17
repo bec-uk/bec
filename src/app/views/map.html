@@ -1,0 +1,14 @@
+<ui-gmap-google-map center='mapc.mapParams.center' zoom='mapc.mapParams.zoom'>
+
+    <ui-gmap-marker 
+        coords="site.location"
+        options="{labelContent: site.name, labelClass: 'map-label'}"
+        events=""
+        click="mapc.goToSite(site.shortcode)"
+        idkey="site.shortcode"
+        ng-repeat="site in mapc.siteData"
+    >
+    </ui-gmap-marker>
+
+
+</ui-gmap-google-map>

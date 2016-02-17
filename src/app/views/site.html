@@ -1,0 +1,31 @@
+<nvd3 options="site.options" data="site.data"></nvd3>
+
+<md-content flex layout-padding ng-hide="fullScreen">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        
+        <md-input-container>
+            <label>Units</label>
+            <md-select ng-model="site.chosenUnit" ng-change="site.buildGraphData()">
+                <md-option ng-repeat="unit in site.units track by $index" value="{{$index}}">{{unit.name}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-datepicker ng-model="site.params.exportStartDate" md-placeholder="Start date"></md-datepicker>
+
+        <md-datepicker ng-model="site.params.exportEndDate" md-placeholder="End date"></md-datepicker>
+        
+
+        <md-input-container>
+            <label>Resolution</label>
+            <md-select ng-model="site.params.resolution">
+                <md-option ng-repeat="resolution in site.resolutions" value="{{resolution.code}}">{{resolution.name}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-button ng-click="site.getData()" class="md-raised md-primary">Update</md-button>
+    </section>
+</md-content>
+
+<md-button aria-label="menu" class="md-fab md-warn md-fab-bottom-right" ng-click="site.toggleFullScreen()">
+    <i class="material-icons md-36">fullscreen_exit </i>
+</md-button>
