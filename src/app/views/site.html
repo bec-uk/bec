@@ -1,4 +1,4 @@
-<nvd3 options="site.options" data="site.data"></nvd3>
+<div ui-view></div>
 
 <md-content flex layout-padding ng-hide="fullScreen">
     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
@@ -13,7 +13,6 @@
         <md-datepicker ng-model="site.params.exportStartDate" md-placeholder="Start date"></md-datepicker>
 
         <md-datepicker ng-model="site.params.exportEndDate" md-placeholder="End date"></md-datepicker>
-        
 
         <md-input-container>
             <label>Resolution</label>

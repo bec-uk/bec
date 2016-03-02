@@ -7,6 +7,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
     $locationProvider.html5Mode(true);
   })
 
+  .run(function($rootScope, $state) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+      if (toState.redirectTo) {
+        event.preventDefault();
+        $state.go(toState.redirectTo, toParams);
+      }
+    });
+  })
+
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                     $mdIconProvider) {
     $stateProvider
@@ -27,30 +36,34 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         }
       })
       .state('home.site', {
+        redirectTo: 'home.site.graph',
         url: '/site/:shortcode',
         templateUrl: 'app/views/site.html',
         controller: 'SiteController',
         controllerAs: 'site',
         data: {
           title: 'Site'
-        }
+        },
+        // abstract: true
       })
-      // .state('home.dashboard', {
-      //   url: '/dashboard',
-      //   templateUrl: 'app/views/dashboard.html',
-      //   data: {
-      //     title: 'Dashboard'
-      //   }
-      // })
-      // .state('home.profile', {
-      //   url: '/profile',
-      //   templateUrl: 'app/views/profile.html',
-      //   controller: 'ProfileController',
-      //   controllerAs: 'vm',
-      //   data: {
-      //     title: 'Profile'
-      //   }
-      // })
+        .state('home.site.headline', {
+          url: '/headline',
+          templateUrl: 'app/views/site.headline.html',
+          controller: 'HeadlineController',
+          controllerAs: 'headline',
+          data: {
+            title: 'Site Headline Figures'
+          }
+        })
+        .state('home.site.graph', {
+          url: '/graph',
+          templateUrl: 'app/views/site.graph.html',
+          controller: 'SiteController',
+          controllerAs: 'site',
+          data: {
+            title: 'Site Consumption Over Time'
+          }
+        })
       .state('home.list', {
         url: '/list',
         controller: 'TableController',
