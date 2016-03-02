@@ -11,12 +11,13 @@
     var vm = this;
 
     vm.menuItems = [ ];
-    vm.selectItem = selectItem;
+    vm.subMenuItems = navService.getSubMenuItems;
     vm.toggleItemsList = toggleItemsList;
     vm.showActions = showActions;
     vm.title = $state.current.data.title;
     vm.showSimpleToast = showSimpleToast;
     vm.toggleRightSidebar = toggleRightSidebar;
+    vm.selectItem = selectItem;
     $rootScope.fullScreen = false;
 
     navService

@@ -7,13 +7,18 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
     $locationProvider.html5Mode(true);
   })
 
-  .run(function($rootScope, $state) {
+  .run(function($rootScope, $state, navService) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
       if (toState.redirectTo) {
         event.preventDefault();
         $state.go(toState.redirectTo, toParams);
       }
     });
+
+    $rootScope.$on('$stateChangeSuccess', 
+      function(event, toState, toParams, fromState, fromParams){ 
+        navService.loadSubMenuItems($state.current.parent);
+      });
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
@@ -36,7 +41,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         }
       })
       .state('home.site', {
-        redirectTo: 'home.site.graph',
+        redirectTo: 'graph',
         url: '/site/:shortcode',
         templateUrl: 'app/views/site.html',
         controller: 'SiteController',
@@ -46,7 +51,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         },
         // abstract: true
       })
-        .state('home.site.headline', {
+        .state('headline', {
+          parent: 'home.site',
           url: '/headline',
           templateUrl: 'app/views/site.headline.html',
           controller: 'HeadlineController',
@@ -55,7 +61,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
             title: 'Site Headline Figures'
           }
         })
-        .state('home.site.graph', {
+        .state('graph', {
+          parent: 'home.site',
           url: '/graph',
           templateUrl: 'app/views/site.graph.html',
           controller: 'SiteController',
