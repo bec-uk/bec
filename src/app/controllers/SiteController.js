@@ -38,7 +38,7 @@
 
     self.buildGraphData = function() {
         var unit = self.units[self.chosenUnit];
-        self.options.title.text = unit.name+' for '+self.siteData.name;
+        self.options.title.text = unit.name+' by '+self.siteData.name;
         self.options.chart.yAxis.axisLabel = unit.unit;
         self.data[0].values = [];
         for (var i = simtricityService.data.length - 1; i >= 0; i--) {
