@@ -18,6 +18,7 @@
     vm.showSimpleToast = showSimpleToast;
     vm.toggleRightSidebar = toggleRightSidebar;
     vm.selectItem = selectItem;
+    vm.selectSubItem = selectSubItem;
     $rootScope.fullScreen = false;
 
     navService
@@ -32,13 +33,17 @@
 
     function toggleItemsList() {
       var pending = $mdBottomSheet.hide() || $q.when(true);
-
       pending.then(function(){
         $mdSidenav('left').toggle();
       });
     }
 
     function selectItem (item) {
+      vm.title = item.name;
+      vm.showSimpleToast(vm.title);
+    }
+
+    function selectSubItem (item) {
       vm.title = item.name;
       vm.toggleItemsList();
       vm.showSimpleToast(vm.title);
