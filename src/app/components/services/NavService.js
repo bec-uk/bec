@@ -48,25 +48,24 @@
     var subMenuItems = [];
 
     return {
-      getSubMenuItems : function() {
-        return subMenuItems;
-      },
-      loadAllItems : function() {
-        // return $q.when(menuItems);
-        return $q.when(menuItems.filter(function(item) {
-          return !(item.hasOwnProperty('abstract') && item.abstract)
-        }));
-      },
-      loadSubMenuItems : function(sref) {
-        var item = menuItems.filter(function(item) {
-          return item.sref === sref;
-        });
-        if(item.length && item[0].hasOwnProperty('subItems'))
-          subMenuItems = item[0].subItems;
-        else 
-          subMenuItems = [];
-        console.log(subMenuItems);
-      }
+        getSubMenuItems : function() {
+            return subMenuItems;
+        },
+        loadAllItems : function() {
+            // return $q.when(menuItems);
+            return $q.when(menuItems.filter(function(item) {
+              return !(item.hasOwnProperty('abstract') && item.abstract)
+            }));
+        },
+        loadSubMenuItems : function(sref) {
+            var item = menuItems.filter(function(item) {
+              return item.sref === sref;
+            });
+            if(item.length && item[0].hasOwnProperty('subItems'))
+              subMenuItems = item[0].subItems;
+            else 
+              subMenuItems = [];
+        }
     };
   }
 

@@ -9,7 +9,7 @@
 
   function HeadlineController(sitesService, $state, simtricityService, quantitiesService, chartsService, toastService, $interval, $rootScope) {  
 
-      console.log('Headline Controller');
+      
 
   }
 
