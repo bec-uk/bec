@@ -23,7 +23,10 @@
 
       units: [
           {name: "Energy generation", unit: "kWh", factor: 1},
-          {name: "People's day's electricity supplied", unit: "People days", factor: 1/13},
+          {name: "People's day's electricity supplied", unit: "", factor: 1/13},
+          {name: "Cost of electricity", unit: "£", factor: 0.14},
+          {name: "CO2 saved", unit: "kg", factor: 462/1000},
+          {name: "Cups of tea boiled", unit: "", factor: 1/0.025},
       ]
 
     };
