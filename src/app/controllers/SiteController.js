@@ -3,53 +3,40 @@
   angular
     .module('app')
     .controller('SiteController', [
-      'sitesService', '$state', 'simtricityService', 'quantitiesService', 'chartsService', 'toastService', '$interval', '$rootScope',
+      'sitesService', '$state', 'dataService', 'quantitiesService', 'chartsService', '$interval', '$rootScope',
       SiteController
     ]);
 
-  function SiteController(sitesService, $state, simtricityService, quantitiesService, chartsService, toastService, $interval, $rootScope) {  
+  function SiteController(sitesService, $state, dataService, quantitiesService, chartsService, $interval, $rootScope) {  
 
     self = this;
-
-    self.siteData = [];
-
-    self.resolutions = quantitiesService.resolutions;
-    self.units = quantitiesService.units;
     
     self.autoUpdate = null;
 
-    self.params = {
-        exportStartDate: moment().subtract(30, 'days').toDate(),
-        exportEndDate: moment().subtract(1, 'days').toDate(),
-        resolution: 'P1D',
-        meterSerial: ''
-    };
+    // chart series format from chartService
+    var chartSeries = [
+        chartsService.series
+    ];
 
-    self.chosenUnit = 0;
+    // chart options from chartService
+    var chartOptions = chartsService.historicalBarChartOptions;
 
-    self.getData = function() {
-        var toast = toastService.createPersistentToast('Loading');
-        simtricityService.retrieve(self.params)
-            .then(function() {
-                self.buildGraphData()
-                toastService.hidePersistentToast(toast);
-            });
+    //getters for chart data and options to bind to chart
+    self.getChartSeries = function() {
+        chartSeries[0].values = dataService.getData();
+        return chartSeries;
+    }
+    self.getChartOptions = function() {
+        var meta = dataService.getMeta();
+        chartOptions.chart.yAxis.axisLabel = meta.unit.unit;
+        chartOptions.title.text = meta.unit.name + ' for ' + meta.site.name;
+        console.log(chartOptions.title.text);
+        return chartOptions;
     }
 
-    self.buildGraphData = function() {
-        var unit = self.units[self.chosenUnit];
-        self.options.title.text = unit.name+' for '+self.siteData.name;
-        self.options.chart.yAxis.axisLabel = unit.unit;
-        self.data[0].values = [];
-        for (var i = simtricityService.data.length - 1; i >= 0; i--) {
-            self.data[0].values.unshift([
-                moment(simtricityService.data[i].Time).format('x'),
-                simtricityService.data[i].Import * unit.factor
-            ])
-        };
-    }
-
+    //full screen stuff. TODO needs to be refactored.
     self.toggleFullScreen = function() {
+        
         if($rootScope.fullScreen) 
             stopAutoUpdate();
         else
@@ -57,7 +44,6 @@
       
         $rootScope.fullScreen = !$rootScope.fullScreen;
     }
-
     
     startAutoUpdate = function() {
         self.autoUpdate = $interval(function() {
@@ -76,26 +62,6 @@
         $interval.cancel(self.autoUpdate);
     }
 
-
-    //chart options
-    self.options = chartsService.historicalBarChartOptions;
-
-    // chart data
-    self.data = [
-        {
-            key: "Quantity" ,
-            bar: true,
-            values: []
-        }];
-
-    // run on startup
-    sitesService
-      .loadItem($state.params.shortcode)
-      .then(function(siteData) {
-        self.siteData = siteData;
-        self.params.meterSerial = self.siteData.meterSerial;
-        self.getData();
-      });
   }
 
 })();

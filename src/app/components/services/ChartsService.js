@@ -10,6 +10,12 @@
   function chartsService($q){
     
     return{
+
+      series: {
+          key: "Quantity" ,
+          bar: true,
+          values: []
+      },
  
       historicalBarChartOptions: {
 

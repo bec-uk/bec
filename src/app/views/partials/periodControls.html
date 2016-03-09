@@ -1,0 +1,24 @@
+<md-content flex layout-padding ng-hide="fullScreen">
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        
+        <md-input-container>
+            <label>Units</label>
+            <md-select ng-model="pc.params.unitIndex" ng-change="pc.buildGraphData()">
+                <md-option ng-repeat="unit in pc.units track by $index" value="{{$index}}">{{unit.name}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-datepicker ng-model="pc.params.exportStartDate" md-placeholder="Start date"></md-datepicker>
+
+        <md-datepicker ng-model="pc.params.exportEndDate" md-placeholder="End date"></md-datepicker>
+
+        <md-input-container>
+            <label>Resolution</label>
+            <md-select ng-model="pc.params.resolution">
+                <md-option ng-repeat="resolution in pc.resolutions" value="{{resolution.code}}">{{resolution.name}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-button ng-click="pc.refreshData()" class="md-raised md-primary">Update</md-button>
+    </section>
+</md-content>

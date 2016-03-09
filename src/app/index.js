@@ -7,6 +7,20 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
     $locationProvider.html5Mode(true);
   })
 
+  .run(function($rootScope, $state, navService) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+      if (toState.redirectTo) {
+        event.preventDefault();
+        $state.go(toState.redirectTo, toParams);
+      }
+    });
+
+    $rootScope.$on('$stateChangeSuccess', 
+      function(event, toState, toParams, fromState, fromParams){ 
+        navService.loadSubMenuItems($state.current.parent);
+      });
+  })
+
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                     $mdIconProvider) {
     $stateProvider
@@ -27,30 +41,36 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         }
       })
       .state('home.site', {
+        redirectTo: 'graph',
         url: '/site/:shortcode',
         templateUrl: 'app/views/site.html',
         controller: 'SiteController',
         controllerAs: 'site',
         data: {
           title: 'Site'
-        }
+        },
+        // abstract: true
       })
-      // .state('home.dashboard', {
-      //   url: '/dashboard',
-      //   templateUrl: 'app/views/dashboard.html',
-      //   data: {
-      //     title: 'Dashboard'
-      //   }
-      // })
-      // .state('home.profile', {
-      //   url: '/profile',
-      //   templateUrl: 'app/views/profile.html',
-      //   controller: 'ProfileController',
-      //   controllerAs: 'vm',
-      //   data: {
-      //     title: 'Profile'
-      //   }
-      // })
+        .state('headline', {
+          parent: 'home.site',
+          url: '/headline',
+          templateUrl: 'app/views/site.headline.html',
+          controller: 'HeadlineController',
+          controllerAs: 'headline',
+          data: {
+            title: 'Site Headline Figures'
+          }
+        })
+        .state('graph', {
+          parent: 'home.site',
+          url: '/graph',
+          templateUrl: 'app/views/site.graph.html',
+          controller: 'SiteController',
+          controllerAs: 'site',
+          data: {
+            title: 'Site Consumption Over Time'
+          }
+        })
       .state('home.list', {
         url: '/list',
         controller: 'TableController',

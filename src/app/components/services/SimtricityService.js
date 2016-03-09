@@ -3,11 +3,11 @@
 
   angular.module('app')
         .service('simtricityService', [
-        '$q', 'readingService', 'utilitiesService',
+        '$q', 'readingService', 'utilitiesService', 'toastService',
       simtricityService
   ]);
 
-  function simtricityService($q, readingService, utilitiesService){
+  function simtricityService($q, readingService, utilitiesService, toastService){
 
         var service = {
             data: [],
@@ -17,7 +17,9 @@
         return service;    
 
         function retrieve(params) {
+            
             return readingService.get(params).then(function() {
+                
                 service.data = readingService.data;
             });
         }   
