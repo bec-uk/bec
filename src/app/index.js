@@ -79,6 +79,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         data: {
           title: 'List'
         }
+      })
+     .state('home.about', {
+        url: '/list',
+        controller: 'AboutController',
+        controllerAs: 'about',
+        templateUrl: 'app/views/about.html',
+        data: {
+          title: 'About'
+        }
       });
 
     $urlRouterProvider.otherwise('/map');

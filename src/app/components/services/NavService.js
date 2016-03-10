@@ -43,6 +43,11 @@
         icon: 'view_list',
         sref: '.list'
       },
+      {
+        name: 'About',
+        icon: 'view_list',
+        sref: '.about'
+      },
     ];
 
     var subMenuItems = [];
