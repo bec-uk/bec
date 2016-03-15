@@ -24,12 +24,17 @@
         
         var units = quantitiesService.units;
 
+        var factors = {
+            co2: units[1].factor,
+            cost: units[2].factor
+        };
+
         var summary = {
             min: 0,
             max: 0,
             total: 0,
             average: 0
-        }
+        };
 
         var meta = {
             site: site,
@@ -39,8 +44,10 @@
 
         var service = {
           getData: getData,
+          getOriginalData: getOriginalData,
           updateData: updateData,
           getMeta: getMeta,
+          getFactors: getFactors,
           getParams: getParams,
           setParams: setParams,
           convertData: convertData
@@ -53,11 +60,19 @@
             return dataConverted;
         }
 
+        function getOriginalData() {
+            return dataOriginal;
+        }
+
         function getMeta() {
             meta.unit = units[params.unitIndex];
             meta.site = site;
             meta.params = params;
             return meta;
+        }
+
+        function getFactors() {
+            return factors;
         }
 
         function getParams() {
