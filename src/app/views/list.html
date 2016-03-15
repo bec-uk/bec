@@ -10,19 +10,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="data in siteData track by $index">
+        <tr ng-repeat="data in list.siteData track by $index">
             <td data-title="ID">{{data.shortcode}}</td>
             <td data-title="Issue">{{data.name}}</td>
             <td data-title="Status">{{data.meterSerial}}</td>
             <td data-title="View">
                 <md-button class="md-raised md-primary" ui-sref='home.site({shortcode: data.shortcode})'>View</md-button>
             </td>
-            <!-- <td data-title="Progress">
-                <md-progress-linear class="table-progress {{data.class}}"
-                                    md-mode="determinate"
-                                    value={{data.progress}}>
-                </md-progress-linear>
-            </td> -->
         </tr>
         </tbody>
     </table>
