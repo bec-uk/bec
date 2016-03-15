@@ -1,1 +1,104 @@
-About...
+<md-content flex class="page-content" layout-xs="column" layout="row">
+
+    <div flex-xs flex-gt-xs="50" layout="column">
+        
+        <md-card>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><i class="material-icons md-36">info_outline</i> Welcome to the Bristol Energy Coop Monitoring System</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+
+                <p>We're developing this web interface so that everyone can take a look at how much energy our solar panels are generating!</p>
+                <p>Unfortunately we don't yet have the data from some of our solar arrays available, so we can't yet show you:</p>
+                <ul>
+                    <li>the output from our Puriton solar farm</li>
+                    <li>the output from some of our panels on Easton Community Centre</li>
+                </ul>
+                <p>To use these pages, press on 'Map' or 'List' on the menu on the left to see the sites.  From there, click on the name of the site to see energy generation data for that building.</p>
+                <p>Our apologies if the interface looks different next time you drop by!</p>
+
+            </md-card-content>
+
+        </md-card>
+
+        <md-card>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><i class="material-icons md-36">link</i> Links & Data</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+
+                <p>Another interesting, but quite technical, website showing energy generation is GridWatch: <a href="http://www.gridwatch.templar.co.uk/" target="_blank">http://www.gridwatch.templar.co.uk/</a></p>
+
+                <p>Here you can see measures of how much power is being generated and exported to the National Grid, broken down by different generation source.  Unfortunately it doesn't show generation by solar panels at the moment.</p>
+
+                <p>We’re not using any data from GridWatch at the moment, but we are gathering data from:</p>
+                <ul>
+                    <li>Simtricity by Clean Energy Prospector - our partner in gathering data from our solar arrays</li>
+                    <li>The forecast.io online weather service</li>
+                    <li>The weather station atop the Create Centre roof run by Bristol City Council</li>
+                    <li>A local weather station run by Martyn Hicks</li>
+                </ul>
+
+            </md-card-content>
+
+        </md-card>
+
+        <md-card>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><i class="material-icons md-36">settings</i> Technical information </span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+
+                <p>Thanks to the <a href="http://www.spiraledge.co.uk" target="_blank">Spiraledge</a> team for their development efforts and hosting it while it's in it's infancy.</p>
+
+                <p>By the way, the work we've done on this website is open source and we'd be happy to share with other community energy providers or organisations/individuals with solar panels!  If you're interested in using it, or helping us improve it, you can.  Sources are available via Github; <a target="_blank" href="https://github.com/spiraledgeuk/bec">https://github.com/spiraledgeuk/bec</a> and <a target="_blank" href="https://github.com/bec-uk/bec_fault_mon">https://github.com/bec-uk/bec_fault_mon</a>.</p>            
+
+            </md-card-content>
+
+        </md-card>
+
+    </div>
+
+    <div flex-xs flex-gt-xs="50" layout="column"> 
+
+        <md-card>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><i class="material-icons md-36">lightbulb_outline</i> Some information about electrcity</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+
+                <p>As you may remember from school science lessons, electricity is complicated!  It’s useful to know the difference between electrical power and electrical energy when looking at some of our charts, so here’s a brief description.</p>
+
+                <p>Power is a measure of the amount of electricity flowing at a particular moment in time.  Energy is a measure of the amount of electricity which has flowed during a period of time.  If we compare with a water tap, power would be how strong the flow of water out of the tap is (related to how far you turned it on), and energy would be like the amount of water that came out of the tap in, say, 10 seconds.</p>
+
+                <p>Electrical power is measured in watts.  The packaging for light bulbs and electric heaters will tell you how much power they use in watts, or for heaters maybe in kilowatts (1000 watts is one kilowatt).  Some things use a constant amount of power, but others, like your mobile phone, will use variable amounts of power depending on what they are doing (phones use more power when the screen is on, and even more when they are doing lots of calculations as you watch a video or play a game).</p>
+
+                <p>Electrical energy can be measured in watt-hours or kilowatt hours (kWh).  Your electricity provider probably sells you 'units' of electricity.  Each 'unit' is one kWh.  If you had a 2000 watt heater, and you ran it for 1 hour, you would have used 2000 watt hours or 2 kWh of energy.  For a 20 watt light bulb, it would take 50 hours to use a ‘unit’ of energy; 20 watts x 50 hours = 1000 watt hours = 1 kWh.</p>
+
+                <p>The energy our solar panels generate varies with the amount of sunshine reaching them.  On a cloudy day they will still generate some energy, but far less than on a bright, sunny day.  On some of our charts we add weather icons which should help to explain why some energy or power bars are larger than others.  Where the sun is related to the way the solar panel is facing also affects the amount of power a solar panel can generate - a panel facing east will generate more energy in the morning, when the sun is also in the east, than during the afternoon when the sun is no longer shining on it directly.</p>
+
+                <p>Power and energy can be measured for lots of different activities; riding a bicycle, boiling an egg, driving a car, etc.  As we improve this website, we hope to be able to show you how much energy our panels are generating using activities such as these which may mean more to you than kilowatt hours!</p>
+
+            </md-card-content>
+
+        </md-card>
+
+    </div>
+
+</md-content>

@@ -85,7 +85,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         }
       });
 
-    $urlRouterProvider.otherwise('/map');
+    $urlRouterProvider.otherwise('/about');
 
     $mdThemingProvider
       .theme('default')
