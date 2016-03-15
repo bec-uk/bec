@@ -33,34 +33,6 @@
         return chartOptions;
     }
 
-    //full screen stuff. TODO needs to be refactored.
-    self.toggleFullScreen = function() {
-        
-        if($rootScope.fullScreen) 
-            stopAutoUpdate();
-        else
-            startAutoUpdate();
-      
-        $rootScope.fullScreen = !$rootScope.fullScreen;
-    }
-    
-    startAutoUpdate = function() {
-        self.autoUpdate = $interval(function() {
-            if(moment().isBetween(
-                moment().hour(7).minute(0).seconds(0),
-                moment().hour(7).minute(5).seconds(0)
-            )) {
-                self.params.exportStartDate = moment().subtract(30, 'days').toDate();
-                self.params.exportEndDate = moment().subtract(1, 'days').toDate();
-                self.getData();
-            }
-        }, 300000);
-    }
-
-    stopAutoUpdate = function() {
-        $interval.cancel(self.autoUpdate);
-    }
-
   }
 
 })();
