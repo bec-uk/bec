@@ -10,11 +10,11 @@
             });
         })
        .controller('MapController', [
-          'navService', '$log', '$state', '$mdToast', 'uiGmapGoogleMapApi', '$scope', 'sitesService',
+          '$state', 'uiGmapGoogleMapApi', 'sitesService',
           MapController
        ]);
 
-  function MapController(navService, $log, $state, $mdToast, uiGmapGoogleMapApi, $scope, sitesService) {
+  function MapController($state, uiGmapGoogleMapApi, sitesService) {
 
       self = this;
 

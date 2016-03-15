@@ -2,12 +2,12 @@
 
   angular
     .module('app')
-    .controller('SiteController', [
-      'sitesService', '$state', 'dataService', 'quantitiesService', 'chartsService', '$interval', '$rootScope',
-      SiteController
+    .controller('GraphController', [
+      'dataService', 'chartsService', '$interval', '$rootScope',
+      GraphController
     ]);
 
-  function SiteController(sitesService, $state, dataService, quantitiesService, chartsService, $interval, $rootScope) {  
+  function GraphController(dataService, chartsService, $interval, $rootScope) {  
 
     self = this;
     
@@ -30,7 +30,6 @@
         var meta = dataService.getMeta();
         chartOptions.chart.yAxis.axisLabel = meta.unit.unit;
         chartOptions.title.text = meta.unit.name + ' for ' + meta.site.name;
-        console.log(chartOptions.title.text);
         return chartOptions;
     }
 

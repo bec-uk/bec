@@ -33,11 +33,6 @@
 
         ]
       },
-      // {
-      //   name: 'Profile',
-      //   icon: 'person',
-      //   sref: '.profile'
-      // },
       {
         name: 'List',
         icon: 'view_list',

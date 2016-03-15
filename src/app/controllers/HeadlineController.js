@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('HeadlineController', [
-      'sitesService', '$state', 'dataService', 'quantitiesService', 'chartsService', 'toastService', '$interval', '$rootScope',
+      'dataService',
       HeadlineController
     ]);
 
-  function HeadlineController(sitesService, $state, dataService, quantitiesService, chartsService, toastService, $interval, $rootScope) {  
+  function HeadlineController(dataService) {  
 
   	self = this;
   

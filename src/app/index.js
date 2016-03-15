@@ -44,12 +44,9 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         redirectTo: 'graph',
         url: '/site/:shortcode',
         templateUrl: 'app/views/site.html',
-        controller: 'SiteController',
-        controllerAs: 'site',
         data: {
           title: 'Site'
-        },
-        // abstract: true
+        }
       })
         .state('headline', {
           parent: 'home.site',
@@ -65,25 +62,23 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
           parent: 'home.site',
           url: '/graph',
           templateUrl: 'app/views/site.graph.html',
-          controller: 'SiteController',
-          controllerAs: 'site',
+          controller: 'GraphController',
+          controllerAs: 'graph',
           data: {
             title: 'Site Consumption Over Time'
           }
         })
       .state('home.list', {
         url: '/list',
-        controller: 'TableController',
-        controllerAs: 'vm',
+        controller: 'ListController',
+        controllerAs: 'list',
         templateUrl: 'app/views/list.html',
         data: {
           title: 'List'
         }
       })
      .state('home.about', {
-        url: '/list',
-        controller: 'AboutController',
-        controllerAs: 'about',
+        url: '/about',
         templateUrl: 'app/views/about.html',
         data: {
           title: 'About'

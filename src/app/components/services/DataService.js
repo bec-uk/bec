@@ -9,7 +9,8 @@
 
     function dataService($q, simtricityService, sitesService, toastService, quantitiesService){
 
-        var data = []
+        var dataOriginal = [];
+        var dataConverted = [];
         
         var site = {};
 
@@ -43,26 +44,26 @@
           getMeta: getMeta,
           getParams: getParams,
           setParams: setParams,
-
+          convertData: convertData
         };
 
         return service;    
 
 
         function getData() {
-            return data;
+            return dataConverted;
         }
 
         function getDataSummary () {
             var values = [];
-            for (var i = data.length - 1; i >= 0; i--) {
-                values.push(data[i][1]);
+            for (var i = dataConverted.length - 1; i >= 0; i--) {
+                values.push(dataConverted[i][1]);
             }
             summary.min = sigFigs(Math.min.apply(null, values),3);
             summary.max = sigFigs(Math.max.apply(null, values),3);
             var total = 0;
-            for (var i = data.length - 1; i >= 0; i--) {
-                total += data[i][1];
+            for (var i = dataConverted.length - 1; i >= 0; i--) {
+                total += dataConverted[i][1];
             }
             summary.total = sigFigs(total,3);
             summary.average = sigFigs(summary.total/values.length,3);
@@ -97,14 +98,16 @@
             });
         }
 
+
+
         function updateData() {
 
             //update data using simtricity service TODO Toast notifications sometimes get stuck. Fix before renabling.
             // var toast = toastService.createPersistentToast('Retrieving data from Simtricity');
             return simtricityService.retrieve(params).then(function() {
-                data = [];
+                dataOriginal = [];
                 for (var i = simtricityService.data.length - 1; i >= 0; i--) {
-                    data.unshift([
+                    dataOriginal.unshift([
                         moment(simtricityService.data[i].Time).format('x'),
                         simtricityService.data[i].Import// * units[params.unitIndex].factor
                     ])
@@ -113,10 +116,15 @@
             });
         }
 
-        function convertData(unitIndex) {
+        function convertData() {
 
-            for (var i = data.length - 1; i >= 0; i--) {
-                data[i][1] *= units[params.unitIndex].factor;
+            dataConverted = [];
+
+            for (var i = dataOriginal.length - 1; i >= 0; i--) {
+                dataConverted.unshift([
+                    dataOriginal[i][0],
+                    dataOriginal[i][1] * units[params.unitIndex].factor
+                ])
             }
 
         }
