@@ -3,11 +3,11 @@
 
     angular.module('app')
         .service('dataService', [
-        '$q', 'simtricityService', 'sitesService', 'toastService', 'quantitiesService',
+        '$q', 'simtricityService', 'sitesService', 'toastService', 'quantitiesService', '$interval',
       dataService
     ]);
 
-    function dataService($q, simtricityService, sitesService, toastService, quantitiesService){
+    function dataService($q, simtricityService, sitesService, toastService, quantitiesService, $interval){
 
         var dataOriginal = [];
         var dataConverted = [];
@@ -43,8 +43,12 @@
           getMeta: getMeta,
           getParams: getParams,
           setParams: setParams,
-          convertData: convertData
+          convertData: convertData,
+          toggleAutoUpdate: toggleAutoUpdate
         };
+
+        var autoUpdating = false;
+        var autoUpdate = null;
 
         return service;    
 
@@ -75,8 +79,6 @@
             });
         }
 
-
-
         function updateData() {
 
             //update data using simtricity service TODO Toast notifications sometimes get stuck. Fix before renabling.
@@ -104,6 +106,35 @@
                 ])
             }
 
+        }
+
+        //Auto update of data - TODO: move some of this to a separate service.
+        function toggleAutoUpdate() {
+            console.log('toggle');
+            if(autoUpdating) 
+                stopAutoUpdate();
+            else
+                startAutoUpdate();
+
+        }
+        
+        function startAutoUpdate() {
+            autoUpdating = true;
+            autoUpdate = $interval(function() {
+                if(moment().isBetween(
+                    moment().hour(7).minute(0).seconds(0),
+                    moment().hour(7).minute(5).seconds(0)
+                )) {
+                    params.exportStartDate = moment().subtract(30, 'days').toDate();
+                    params.exportEndDate = moment().subtract(1, 'days').toDate();
+                    updateData();
+                }
+            }, 300000);
+        }
+
+        function stopAutoUpdate() {
+            autoUpdating = false;
+            $interval.cancel(autoUpdate);
         }
 
     }

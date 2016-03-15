@@ -43,6 +43,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
       .state('home.site', {
         redirectTo: 'graph',
         url: '/site/:shortcode',
+        controller: 'SiteController',
+        controllerAs: 'site',
         templateUrl: 'app/views/site.html',
         data: {
           title: 'Site'
