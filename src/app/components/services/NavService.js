@@ -40,7 +40,7 @@
       },
       {
         name: 'About',
-        icon: 'view_list',
+        icon: 'info_outline',
         sref: '.about'
       },
     ];
