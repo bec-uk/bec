@@ -39,7 +39,6 @@
 
         var service = {
           getData: getData,
-          getDataSummary: getDataSummary,
           updateData: updateData,
           getMeta: getMeta,
           getParams: getParams,
@@ -52,28 +51,6 @@
 
         function getData() {
             return dataConverted;
-        }
-
-        function getDataSummary () {
-            var values = [];
-            for (var i = dataConverted.length - 1; i >= 0; i--) {
-                values.push(dataConverted[i][1]);
-            }
-            summary.min = sigFigs(Math.min.apply(null, values),3);
-            summary.max = sigFigs(Math.max.apply(null, values),3);
-            var total = 0;
-            for (var i = dataConverted.length - 1; i >= 0; i--) {
-                total += dataConverted[i][1];
-            }
-            summary.total = sigFigs(total,3);
-            summary.average = sigFigs(summary.total/values.length,3);
-            return summary;
-        }
-
-        function sigFigs(n, sig) {
-            var mult = Math.pow(10,
-            sig - Math.floor(Math.log(n) / Math.LN10) - 1);
-            return Math.round(n * mult) / mult;
         }
 
         function getMeta() {

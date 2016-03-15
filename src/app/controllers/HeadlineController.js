@@ -12,7 +12,7 @@
   	self = this;
   
   	self.meta = dataService.getMeta;
-  	self.summary = dataService.getDataSummary;
+    self.data = dataService.getData;
 
   }
 
