@@ -1,6 +1,25 @@
 <p>Headline Data</p>
 
+<p ng-bind="headline.originalData() | extractDataSeries | mean | sigFigs:3"></p>
+<p ng-bind="headline.originalData() | extractDataSeries | total | sigFigs:3"></p>
+<p>kWh</p>
+
+
+<p ng-bind="headline.originalData() | extractDataSeries | mean | convertUnits:headline.factors().co2 | sigFigs:3"></p>
+<p ng-bind="headline.originalData() | extractDataSeries | total | convertUnits:headline.factors().co2 | sigFigs:3"></p>
+<p>kg</p>
+
+<p ng-bind="headline.originalData() | extractDataSeries | mean | convertUnits:headline.factors().cost | sigFigs:3"></p>
+<p ng-bind="headline.originalData() | extractDataSeries | total | convertUnits:headline.factors().cost | sigFigs:3"></p>
+<p>£</p>
+
+
 <p ng-bind="headline.data() | extractDataSeries | min | sigFigs:3"></p>
 <p ng-bind="headline.data() | extractDataSeries | max | sigFigs:3"></p>
 <p ng-bind="headline.data() | extractDataSeries | mean | sigFigs:3"></p>
 <p ng-bind="headline.data() | extractDataSeries | total | sigFigs:3"></p>
+<p ng-bind="headline.meta().unit.name"></p>
+<p ng-bind="headline.meta().unit.unit"></p>
+
+
+

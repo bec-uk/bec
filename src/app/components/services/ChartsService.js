@@ -60,7 +60,7 @@
               yAxis: {
                   axisLabel: '',
                   tickFormat: function(d){
-                      return d3.format('.01f')(d);
+                      return d3.format('.3r')(d);
                   },
                   axisLabelDistance: -10 //leaves room for unit
               },
