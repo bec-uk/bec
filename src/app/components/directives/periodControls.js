@@ -35,6 +35,7 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
     self.params = dataService.getParams();
     self.resolutions = quantitiesService.resolutions;
     self.units = quantitiesService.units;
+    self.convertData = dataService.convertData;
 
     self.refreshData = function() {
         dataService.setParams(self.params, $state.params.shortcode);

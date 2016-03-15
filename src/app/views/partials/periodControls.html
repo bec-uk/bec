@@ -3,7 +3,7 @@
         
         <md-input-container>
             <label>Units</label>
-            <md-select ng-model="pc.params.unitIndex" ng-change="pc.buildGraphData()">
+            <md-select ng-model="pc.params.unitIndex" ng-change="pc.convertData()">
                 <md-option ng-repeat="unit in pc.units track by $index" value="{{$index}}">{{unit.name}}</md-option>
             </md-select>
         </md-input-container>
