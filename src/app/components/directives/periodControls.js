@@ -37,7 +37,6 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
     self.units = quantitiesService.units;
 
     self.refreshData = function() {
-        console.log('refreshing');
         dataService.setParams(self.params, $state.params.shortcode);
     }
 

@@ -30,7 +30,6 @@
         var meta = dataService.getMeta();
         chartOptions.chart.yAxis.axisLabel = meta.unit.unit;
         chartOptions.title.text = meta.unit.name + ' for ' + meta.site.name;
-        console.log(chartOptions.title.text);
         return chartOptions;
     }
 
