@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('HeadlineController', [
-      'dataService',
+      'dataService', 'quantitiesService',
       HeadlineController
     ]);
 
-  function HeadlineController(dataService) {  
+  function HeadlineController(dataService, quantitiesService) {  
 
   	self = this;
   
@@ -15,6 +15,8 @@
     self.data = dataService.getData;
     self.originalData = dataService.getOriginalData;
     self.factors = dataService.getFactors;
+
+    self.quantities = quantitiesService;
 
   }
 

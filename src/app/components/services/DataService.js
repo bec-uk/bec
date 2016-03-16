@@ -24,11 +24,6 @@
         
         var units = quantitiesService.units;
 
-        var factors = {
-            co2: units[1].factor,
-            cost: units[2].factor
-        };
-
         var summary = {
             min: 0,
             max: 0,
@@ -39,7 +34,9 @@
         var meta = {
             site: site,
             params: params,
-            unit: {}
+            unit: {},
+            duration: {},
+            period: ''
         };
 
         var service = {
@@ -47,7 +44,6 @@
           getOriginalData: getOriginalData,
           updateData: updateData,
           getMeta: getMeta,
-          getFactors: getFactors,
           getParams: getParams,
           setParams: setParams,
           convertData: convertData,
@@ -72,11 +68,9 @@
             meta.unit = units[params.unitIndex];
             meta.site = site;
             meta.params = params;
+            meta.duration.days = Math.ceil(moment.duration(moment(params.exportEndDate).diff(moment(params.exportStartDate))).asDays());
+            meta.period = moment.duration(params.resolution).humanize();
             return meta;
-        }
-
-        function getFactors() {
-            return factors;
         }
 
         function getParams() {

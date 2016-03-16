@@ -1,36 +1,66 @@
-(function(){
-  'use strict';
+  (function(){
+    'use strict';
 
-  angular.module('app')
+    angular.module('app')
         .service('quantitiesService', [
         '$q',
       quantitiesService
-  ]);
+    ]);
 
-  function quantitiesService($q){
-    
-    return{
+    function quantitiesService($q){
 
-      resolutions: [
-          // {name: "Half hourly", code: "PT30M"},
-          // {name: "Hourly", code: "PT1H"},
-          {name: "Daily", code: "P1D"},
-          {name: "Weekly", code: "P1W"},
-          {name: "Monthly", code: "P1M"},
-          {name: "Quarterly", code: "P3M"},
-          {name: "Yearly", code: "P1Y"},
-      ],
+        return{
 
-      units: [
-          {name: "Energy generation", unit: "kWh", factor: 1},
-          {name: "CO2 saved", unit: "kg", factor: 462/1000},
-          {name: "Cost of electricity", unit: "£", factor: 0.14},
-          {name: "People's day's electricity supplied", unit: "", factor: 1/13},
-          {name: "Cups of tea boiled", unit: "", factor: 1/0.025},
-      ]
+            fixedUnitSummaries: [
+                {
+                    name: 'Average',
+                    filter: 'mean'
+                },
+                {
+                    name: 'Total',
+                    filter: 'total'
+                }
+            ],
 
-    };
+            variableUnitSummaries: [
+                {
+                    name: 'Minimum',
+                    filter: 'min'
+                },
+                {
+                    name: 'Maximum',
+                    filter: 'max'
+                },
+                {
+                    name: 'Average',
+                    filter: 'mean'
+                },
+                {
+                    name: 'Total',
+                    filter: 'total'
+                }
+            ],
 
-  }
+            resolutions: [
+              // {name: "Half hourly", code: "PT30M"},
+              // {name: "Hourly", code: "PT1H"},
+              {name: "Daily", code: "P1D"},
+              {name: "Weekly", code: "P1W"},
+              {name: "Monthly", code: "P1M"},
+              {name: "Quarterly", code: "P3M"},
+              {name: "Yearly", code: "P1Y"},
+            ],
+
+            units: [
+              {name: "Energy generation", unit: "kWh", factor: 1, prefix: "", suffix: "kWh", fixed: true, icon: 'wb_sunny'},
+              {name: "CO2 saved", unit: "kg", factor: 462/1000, prefix: "", suffix: "kg", fixed: true, icon: 'cloud'},
+              {name: "Cost of electricity", unit: "£", factor: 0.14, prefix: "£", suffix: "", fixed: true, icon: 'attach_money'},
+              {name: "People's day's electricity supplied", unit: "", factor: 1/13, prefix: "", suffix: "people days",fixed: false, icon: 'person'},
+              {name: "Cups of tea boiled", unit: "", factor: 1/0.025, prefix: "", suffix: "cups", icon: "free_breakfast", fixed: false},
+            ]
+
+        };
+
+    }
 
 })();
