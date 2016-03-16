@@ -59,7 +59,7 @@
                 }
             }
         })
-        .filter('summary', ['$filter', function($filter) {
+        .filter('applyFilter', ['$filter', function($filter) {
             return function(input, func) {
                 return $filter(func)(input);
             }
