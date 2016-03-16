@@ -16,3 +16,12 @@ a.built-by {
         max-width: 150px;
     }
 }
+
+h1,h2,h3,h4,h5 {
+    &.center {
+        text-align: center;
+    }
+    &.bold {
+        font-weight: bold;
+    }
+}

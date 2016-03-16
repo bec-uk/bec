@@ -35,7 +35,7 @@
             site: site,
             params: params,
             unit: {},
-            duration: '',
+            duration: {},
             period: ''
         };
 
@@ -68,7 +68,7 @@
             meta.unit = units[params.unitIndex];
             meta.site = site;
             meta.params = params;
-            // meta.duration = 
+            meta.duration.days = Math.ceil(moment.duration(moment(params.exportEndDate).diff(moment(params.exportStartDate))).asDays());
             meta.period = moment.duration(params.resolution).humanize();
             return meta;
         }
