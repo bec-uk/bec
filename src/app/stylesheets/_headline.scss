@@ -1,13 +1,16 @@
 .headline-data {
 
     md-card {
+
+        color: white;
+
         md-card-title-text {
             font-size: 30px;
         }
         md-card-title-media {
             i {
                 font-size: 70px;
-                color: $text-color;
+                // color: $text-color;
             }
         }
         md-card-content {

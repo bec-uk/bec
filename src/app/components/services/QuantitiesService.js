@@ -52,7 +52,7 @@
             ],
 
             units: [
-              {name: "Energy generation", unit: "kWh", factor: 1, prefix: "", suffix: "kWh", fixed: true, icon: 'battery_full'},
+              {name: "Energy generation", unit: "kWh", factor: 1, prefix: "", suffix: "kWh", fixed: true, icon: 'wb_sunny'},
               {name: "CO2 saved", unit: "kg", factor: 462/1000, prefix: "", suffix: "kg", fixed: true, icon: 'cloud'},
               {name: "Cost of electricity", unit: "£", factor: 0.14, prefix: "£", suffix: "", fixed: true, icon: 'attach_money'},
               {name: "People's day's electricity supplied", unit: "", factor: 1/13, prefix: "", suffix: "people days",fixed: false, icon: 'person'},

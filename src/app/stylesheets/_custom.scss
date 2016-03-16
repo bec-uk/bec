@@ -12,6 +12,33 @@ $font-weight-bold: 600;
 $font-size-large: 22px;
 
 
+//BEC COLORS
+// $bec-colors: rgb(31, 169, 44), rgb(0, 141, 81), rgb(5, 92, 144), rgb(39,38,117), rgb(108, 29, 125), rgb(197, 62, 146), rgb(234, 0, 53), rgb(200, 54, 144);
+$bec-colors: rgb(108, 29, 125), rgb(197, 62, 146), rgb(234, 0, 53), rgb(200, 54, 144), rgb(209, 0, 49), rgb(234, 0, 53), rgb(234, 40, 0), rgb(243, 131, 0), rgb(255, 207, 0), rgb(222, 221, 0), rgb(31, 169, 44), rgb(0, 141, 81), rgb(5, 92, 144), rgb(39,38,117);
+$bec-colors-desaturated: 0;
+
+@for $i from 1 through length($bec-colors) {
+  $bec-colors-desaturated: append($bec-colors-desaturated, desaturate(nth($bec-colors, $i), 20));
+}
+
+$bec-colors-length: length($bec-colors);
+
+.bec-color-desaturated-cycle {  
+  @for $i from 1 through $bec-colors-length {
+    &:nth-of-type(#{$bec-colors-length}n+#{($i)-1}) {
+      background-color: nth($bec-colors-desaturated, $i);
+    }
+  }  
+}
+.bec-color-desaturated-cycle-2 {  
+  @for $i from 7 through $bec-colors-length {
+    &:nth-of-type(#{$bec-colors-length}n+#{($i)-7}) {
+      background-color: nth($bec-colors-desaturated, $i);
+    }
+  }  
+}
+
+
 // LAYOUT
 body {
   color: $text-color;
