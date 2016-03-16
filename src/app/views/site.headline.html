@@ -1,25 +1,47 @@
-<p>Headline Data</p>
+<h1 class="md-display-3">Headline Data</h1>
 
-<p ng-bind="headline.originalData() | extractDataSeries | mean | sigFigs:3"></p>
-<p ng-bind="headline.originalData() | extractDataSeries | total | sigFigs:3"></p>
-<p>kWh</p>
+    <div layout-xs="column" layout="row">
+        
+        <md-card ng-repeat="unit in headline.quantities.units | filter: { fixed: true }" flex-gt-xs>
 
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><i class="material-icons md-36">{{unit.icon}}</i> {{unit.name}}</span>
+                </md-card-title-text>
+            </md-card-title>
 
-<p ng-bind="headline.originalData() | extractDataSeries | mean | convertUnits:headline.factors().co2 | sigFigs:3"></p>
-<p ng-bind="headline.originalData() | extractDataSeries | total | convertUnits:headline.factors().co2 | sigFigs:3"></p>
-<p>kg</p>
+            <md-card-content>
 
-<p ng-bind="headline.originalData() | extractDataSeries | mean | convertUnits:headline.factors().cost | sigFigs:3"></p>
-<p ng-bind="headline.originalData() | extractDataSeries | total | convertUnits:headline.factors().cost | sigFigs:3"></p>
-<p>£</p>
+                <div ng-repeat="summary in headline.quantities.fixedUnitSummaries">
+                    {{summary.name}} {{unit.prefix}} {{headline.originalData() | extractDataSeries | summary:summary.filter | convertUnits:unit.factor | sigFigs:3}} {{unit.suffix}}
+                </div>
 
+            </md-card-content>
 
-<p ng-bind="headline.data() | extractDataSeries | min | sigFigs:3"></p>
-<p ng-bind="headline.data() | extractDataSeries | max | sigFigs:3"></p>
-<p ng-bind="headline.data() | extractDataSeries | mean | sigFigs:3"></p>
-<p ng-bind="headline.data() | extractDataSeries | total | sigFigs:3"></p>
-<p ng-bind="headline.meta().unit.name"></p>
-<p ng-bind="headline.meta().unit.unit"></p>
+        </md-card>
 
+    </div>
+
+    <div layout-xs="column" layout="row">
+        
+        <md-card ng-repeat="unit in headline.quantities.variableUnitSummaries" flex-gt-xs>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{unit.name}}</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+
+                
+                    {{headline.meta().unit.prefix}} {{headline.data() | extractDataSeries | summary:unit.filter | sigFigs:3}} {{headline.meta().unit.suffix}}
+                
+
+            </md-card-content>
+
+        </md-card>
+
+    </div>
 
 

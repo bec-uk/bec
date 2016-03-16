@@ -59,6 +59,11 @@
                 }
             }
         })
+        .filter('summary', ['$filter', function($filter) {
+            return function(input, func) {
+                return $filter(func)(input);
+            }
+        }])
 
 })();
 
