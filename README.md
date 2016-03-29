@@ -8,16 +8,18 @@ Based on Flatlogic's [Angular Material Dashboard](http://flatlogic.github.io/ang
 
 Clone project:
 
-    $ git clone git@bitbucket.org:timbarker/bec.git
+    $ git clone https://github.com/spiraledgeuk/bec.git
 
 Install dependencies: (you must have node package manager installed https://www.npmjs.com/)
 
     $ cd <dir>
+    $ sudo npm install -g bower
+    $ sudo npm install -g gulp
     $ npm install
 
 Install gem 'sass' - for css compilation
 
-    $ gem install sass
+    $ sudo gem install sass
     
 Run development web-server:
 
@@ -27,10 +29,14 @@ Build standalone version in /dist
   
     $ gulp build
 
-Deploy to server (with correct permissions)  
+Deploy to server (with correct permissions)
   
     $ gulp build
     $ gulp deploy
+
+## Simtricity API key
+
+To retrieve data from Simtricity an API key/access token is required.  This should be stored in a file called 'simtricity_token.txt'.  This file should be placed in the same directory as the PHP proxy script, as this is what reads the file and inserts the token as needed.  This file should not be readable over the Internet (it should not be served if a web-server client requests it).
 
 ## Proxy Setup
 
