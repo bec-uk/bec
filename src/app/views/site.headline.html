@@ -21,7 +21,7 @@
 
                     <div flex layout="column" class='summary' ng-repeat="summary in headline.quantities.fixedUnitSummaries">
                         <div class='title'>
-                            {{summary.name}}
+                            {{summary.name}} {{summary.appendPeriod ? headline.meta().period : ''}}
                         </div>
                         <div class='number'>
                             <span class='unit'>
@@ -50,7 +50,7 @@
 
             <md-card-title>
                 <md-card-title-text>
-                    <span>{{unit.name}}</span>
+                    <span>{{unit.name}} {{unit.appendPeriod ? headline.meta().period : ''}}</span>
                 </md-card-title-text>
             </md-card-title>
 

@@ -15,7 +15,7 @@
         var site = {};
 
         var params = {
-            exportStartDate: moment().subtract(30, 'days').toDate(),
+            exportStartDate: moment().startOf('year').toDate(),
             exportEndDate: moment().subtract(1, 'days').toDate(),
             resolution: 'P1D',
             meterSerial: '',
@@ -69,7 +69,7 @@
             meta.site = site;
             meta.params = params;
             meta.duration.days = Math.ceil(moment.duration(moment(params.exportEndDate).diff(moment(params.exportStartDate))).asDays());
-            meta.period = moment.duration(params.resolution).humanize();
+            meta.period = quantitiesService.resolutions.filter(function(resolution) { return resolution.code == params.resolution} )[0].period;
             return meta;
         }
 
@@ -134,7 +134,7 @@
                     moment().hour(7).minute(0).seconds(0),
                     moment().hour(7).minute(5).seconds(0)
                 )) {
-                    params.exportStartDate = moment().subtract(30, 'days').toDate();
+                    params.exportStartDate = moment().startOf('year').toDate();
                     params.exportEndDate = moment().subtract(1, 'days').toDate();
                     updateData();
                 }
