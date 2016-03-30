@@ -3,11 +3,11 @@
 
   angular.module('app')
         .service('simtricityService', [
-        '$q', 'readingService', 'utilitiesService', 'toastService',
+        '$q', 'flowService', 'readingService', 'utilitiesService', 'toastService',
       simtricityService
   ]);
 
-  function simtricityService($q, readingService, utilitiesService, toastService){
+  function simtricityService($q, flowService, readingService, utilitiesService, toastService){
 
         var service = {
             data: [],
@@ -17,11 +17,19 @@
         return service;    
 
         function retrieve(params) {
-            
-            return readingService.get(params).then(function() {
-                
-                service.data = readingService.data;
-            });
+            if (params.hasOwnProperty('resolution') &&
+                (params.resolution == "PT30M" || params.resolution == "PT1H"))
+            {
+                return flowService.get(params).then(function() {
+                    service.data = flowService.data;
+                });
+            }
+            else
+            {
+                return readingService.get(params).then(function() {
+                    service.data = readingService.data;
+                });
+            }
         }   
   }
   

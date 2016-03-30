@@ -82,6 +82,7 @@
             sitesService.loadItem(siteCode).then(function(siteData) {
                 site = siteData;
                 params.meterSerial = site.meterSerial;
+                params.siteShortCode = site.shortcode;
                 updateData().then(function() {
                     convertData();
                 }); 
