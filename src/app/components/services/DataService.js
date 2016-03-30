@@ -69,7 +69,7 @@
             meta.site = site;
             meta.params = params;
             meta.duration.days = Math.ceil(moment.duration(moment(params.exportEndDate).diff(moment(params.exportStartDate))).asDays());
-            meta.period = moment.duration(params.resolution).humanize();
+            meta.period = quantitiesService.resolutions.filter(function(resolution) { return resolution.code == params.resolution} )[0].period;
             return meta;
         }
 
