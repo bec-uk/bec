@@ -134,7 +134,7 @@
                     moment().hour(7).minute(0).seconds(0),
                     moment().hour(7).minute(5).seconds(0)
                 )) {
-                    params.exportStartDate = moment().subtract(30, 'days').toDate();
+                    params.exportStartDate = moment().startOf('year').toDate();
                     params.exportEndDate = moment().subtract(1, 'days').toDate();
                     updateData();
                 }
