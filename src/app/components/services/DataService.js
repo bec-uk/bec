@@ -15,7 +15,7 @@
         var site = {};
 
         var params = {
-            exportStartDate: moment().subtract(30, 'days').toDate(),
+            exportStartDate: moment().startOf('year').toDate(),
             exportEndDate: moment().subtract(1, 'days').toDate(),
             resolution: 'P1D',
             meterSerial: '',
