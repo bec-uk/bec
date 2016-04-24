@@ -22,6 +22,7 @@
         .loadAllItems()
         .then(function(siteData) {
             self.siteData = [].concat(siteData);
+            console.log(self.siteData);
         });
 
       uiGmapGoogleMapApi.then(function(maps) {
@@ -34,7 +35,7 @@
               _.object = _.zipObject;
           } 
 
-          self.mapParams = { center: { latitude: 51.433868, longitude: -2.559964 }, zoom: 13 };
+          self.mapParams = { center: { latitude: 51.4545, longitude: -2.5879 }, zoom: 12 };
 
 
       });

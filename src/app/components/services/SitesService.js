@@ -10,6 +10,7 @@
   function sitesService($q){
     var siteData = [
       {
+          id: 0,
           shortcode: 'kwmc',
           name: 'Knowle West Media Centre',
           meterSerial: 14230570,
@@ -20,6 +21,7 @@
           }
       },
       {
+          id: 1,
           shortcode: 'hh',
           name: 'Hamilton House',
           meterSerial: 14230571,
@@ -30,6 +32,7 @@
           }
       },
       {
+          id: 2,
           shortcode: 'bfh',
           name: 'Bristol Folk House',
           meterSerial: 12156991,
@@ -40,6 +43,7 @@
           }
       },
       {
+          id: 3,
           shortcode: 'ecc',
           name: 'Easton Community Centre',
           meterSerial: 15096967, /* FIXME: There will be 4 generation meters when the older ones are connected!  Better to use flow for site to retrieve data */
@@ -50,6 +54,7 @@
           }
       },
       {
+          id: 4,
           shortcode: 'sbsc',
           name: 'South Bristol Sports Centre',
           meterSerial: 14230573,
@@ -60,6 +65,7 @@
           }
       },
       {
+          id: 5,
           shortcode: 'myc',
           name: 'Mill Youth Centre',
           meterSerial: 12156990,
@@ -70,6 +76,7 @@
           }
       },
       {
+          id: 6,
           shortcode: 'bhcc',
           name: 'Brentry & Henbury Childrens Centre',
           meterSerial: 15096965,
