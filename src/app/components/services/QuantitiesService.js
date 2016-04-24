@@ -47,8 +47,8 @@
             ],
 
             resolutions: [
-              // {name: "Half hourly", code: "PT30M"},
-              // {name: "Hourly", code: "PT1H"},
+              {name: "Half hourly", code: "PT30M", period: 'half-hour'},
+              {name: "Hourly", code: "PT1H", period: 'hour'},
               {name: "Daily", code: "P1D", period: 'day'},
               {name: "Weekly", code: "P1W", period: 'week'},
               {name: "Monthly", code: "P1M", period: 'month'},

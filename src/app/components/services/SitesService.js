@@ -42,7 +42,7 @@
       {
           shortcode: 'ecc',
           name: 'Easton Community Centre',
-          meterSerial: 15096967,
+          meterSerial: 15096967, /* FIXME: There will be 4 generation meters when the older ones are connected!  Better to use flow for site to retrieve data */
           address: 'Kilburn St, Bristol BS5 6AW',
           location: {
             latitude: 51.461752,

@@ -45,6 +45,11 @@
         else {
             exportStartDate = moment().subtract(30, 'days').format(simtricityFormat);
         }
+        /* Take an extra day off the start date so that the start date the
+         * user requested is shown as well (we discard the first reading as
+         * we cannot convert it to a kWh value).
+         */
+        exportStartDate = moment(exportStartDate).subtract(1, 'days').format(simtricityFormat);
 
         if(params.hasOwnProperty('exportEndDate')) {
             exportEndDate = moment(params.exportEndDate).format(simtricityFormat);
@@ -80,14 +85,14 @@
         for (var i = data.length - 1; i > 0; i--) {
             data[i].Import = data[i].Import - data[i-1].Import;
         };
-        //data[0].Import = 0;
+        /* We remove the first reading from the data as it is still a meter
+         * reading value rather than a kWh value.
+         */
         data.splice(0,1); //remove first entry
 
         return data;
 
     }
 
-
-    
   }
 })();
