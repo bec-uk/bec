@@ -17,19 +17,17 @@
         return service;    
 
         function retrieve(params) {
-            if (params.hasOwnProperty('resolution') &&
-                (params.resolution == "PT30M" || params.resolution == "PT1H"))
-            {
-                return flowService.get(params).then(function() {
-                    service.data = flowService.data;
-                });
-            }
-            else
-            {
-                return readingService.get(params).then(function() {
-                    service.data = readingService.data;
-                });
-            }
+            
+            //using the flow API for all data. consider deprecating the reading API TBC
+            return flowService.get(params).then(function() {
+              console.log(flowService.data);
+                service.data = flowService.data;
+            });
+        
+            // return readingService.get(params).then(function() {
+            //     service.data = readingService.data;
+            // });
+            
         }   
   }
   

@@ -55,6 +55,9 @@
             else
                 flowEndDate = moment().subtract(1, 'days').format(simtricityFormat);
 
+            //add one day to end date so selected date is included
+            flowEndDate = moment(flowEndDate).add(1, 'days').format(simtricityFormat);
+
             if (params.hasOwnProperty('resolution'))
                 resolution = params.resolution;
 
