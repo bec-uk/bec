@@ -86,6 +86,17 @@
             longitude: -2.611479
           }
       },
+      {
+          id: 7,
+          shortcode: 'conn',
+          name: 'Coniston Community Centre',
+          meterSerial: 16017855,
+          address: 'The Parade, Coniston Rd, Patchway, Bristol, BS34 5LP',
+          location: {
+            latitude: 51.5382202,
+            longitude: -2.5828626
+          }
+      },
     ];
 
     return {
