@@ -16,8 +16,8 @@
           meterSerial: 14230570,
           address: 'Leinster Ave, Bristol BS4 1NL',
           location: {
-            latitude: 51.425229,
-            longitude: -2.5955517
+            latitude: 51.425286,
+            longitude: -2.596237
           }
       },
       {
@@ -38,8 +38,8 @@
           meterSerial: 12156991,
           address: '40A Park St, Bristol BS1 5JG',
           location: {
-            latitude: 51.454225,
-            longitude: -2.602208
+            latitude: 51.45433,
+            longitude: -2.60174
           }
       },
       {
@@ -60,8 +60,8 @@
           meterSerial: 14230573,
           address: 'West Town Lane, Bristol BS14 9EA',
           location: {
-            latitude: 51.426273,
-            longitude: -2.559397
+            latitude: 51.426252,
+            longitude: -2.559184
           }
       },
       {
@@ -71,8 +71,8 @@
           meterSerial: 12156990,
           address: 'Lower Ashley Rd, Bristol BS5 0YJ',
           location: {
-            latitude: 51.466210,
-            longitude: -2.573985
+            latitude: 51.466706,
+            longitude: -2.573856
           }
       },
       {
@@ -82,8 +82,8 @@
           meterSerial: 15096965,
           address: 'Brentry Lane, Bristol BS10 6RG',
           location: {
-            latitude: 51.512655,
-            longitude: -2.611479
+            latitude: 51.512519,
+            longitude: -2.611585
           }
       },
       {
@@ -93,8 +93,8 @@
           meterSerial: 16017855,
           address: 'The Parade, Coniston Rd, Patchway, Bristol, BS34 5LP',
           location: {
-            latitude: 51.5382202,
-            longitude: -2.5828626
+            latitude: 51.538164,
+            longitude: -2.582581
           }
       },
     ];
