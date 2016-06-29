@@ -7,7 +7,7 @@ gulp.task('deploy', function() {
   return gulp.src(['./dist/**/*', './dist/.*'])
     .pipe(rsync({
       root: 'dist',
-      hostname: 'spiraledge.co.uk',
+      hostname: 'bec.spiraledge.co.uk',
       username: 'spiraledge',
       port: 12321,
       destination: '/home/spiraledge/domains/bec.spiraledge.co.uk/public_html',
