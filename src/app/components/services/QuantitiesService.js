@@ -59,7 +59,7 @@
             units: [
               {name: "Energy generation", unit: "kWh", factor: 1, prefix: "", suffix: "kWh", fixed: true, icon: 'wb_sunny'},
               {name: "CO2 saved", unit: "kg", factor: 462/1000, prefix: "", suffix: "kg", fixed: true, icon: 'cloud'},
-              {name: "Value of electricity", unit: "£", factor: 0.14, prefix: "£", suffix: "", fixed: true, icon: 'attach_money'},
+              {name: "Value of electricity", unit: "£", factor: 0.14, prefix: "£", suffix: "", fixed: true, icon: '£'},
               {name: "People's day's electricity supplied", unit: "", factor: 1/13, prefix: "", suffix: "people days",fixed: false, icon: 'person'},
               {name: "Cups of tea boiled", unit: "", factor: 1/0.025, prefix: "", suffix: "cups", icon: "free_breakfast", fixed: false},
             ]
