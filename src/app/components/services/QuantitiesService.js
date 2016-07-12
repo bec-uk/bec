@@ -46,6 +46,8 @@
                 }
             ],
 
+            queryStringDurations: ['days', 'weeks', 'months'],
+
             resolutions: [
               {name: "Half hourly", code: "PT30M", period: 'half-hour'},
               {name: "Hourly", code: "PT1H", period: 'hour'},

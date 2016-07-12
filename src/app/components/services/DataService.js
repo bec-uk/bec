@@ -3,11 +3,11 @@
 
     angular.module('app')
         .service('dataService', [
-        '$q', 'simtricityService', 'sitesService', 'toastService', 'quantitiesService', '$interval',
+        '$q', 'simtricityService', 'sitesService', 'toastService', 'quantitiesService', '$interval', '$location',
       dataService
     ]);
 
-    function dataService($q, simtricityService, sitesService, toastService, quantitiesService, $interval){
+    function dataService($q, simtricityService, sitesService, toastService, quantitiesService, $interval, $location){
 
         var dataOriginal = [];
         var dataConverted = [];
@@ -53,8 +53,28 @@
         var autoUpdating = false;
         var autoUpdate = null;
 
+        _setInitialParams();
         return service;    
 
+        // set initial parameters from query string
+        function _setInitialParams() {
+            var queryString = $location.search();
+
+            // direct set of params
+            angular.forEach(params, function(value, key) {
+                if(queryString.hasOwnProperty(key)) {
+                    params[key] = queryString[key];
+                }
+            });
+
+            // override start/end dates using previous number of days
+            angular.forEach(quantitiesService.queryStringDurations, function(value) {
+                if(queryString.hasOwnProperty(value)) {
+                    params.exportEndDate = moment().subtract(1, 'days').toDate();
+                    params.exportStartDate = moment().subtract(queryString[value], value).subtract(1, 'days').toDate();
+                }
+            });
+        }
 
         function getData() {
             return dataConverted;
