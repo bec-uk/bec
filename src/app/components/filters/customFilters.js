@@ -53,9 +53,14 @@
         .filter('sigFigs', function() {
             return function(input, sig) {
                 if (typeof(input)!=='undefined') {
-                    var mult = Math.pow(10,
-                    sig - Math.floor(Math.log(input) / Math.LN10) - 1);
-                    return Math.round(input * mult) / mult;
+                    if(input !== 0) {
+                        var mult = Math.pow(10,
+                        sig - Math.floor(Math.log(input) / Math.LN10) - 1);
+                        return Math.round(input * mult) / mult;                        
+                    }
+                    else {
+                        return 0;
+                    }
                 }
             }
         })
