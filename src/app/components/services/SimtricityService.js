@@ -20,7 +20,6 @@
             
             //using the flow API for all data. consider deprecating the reading API TBC
             return flowService.get(params).then(function() {
-              console.log(flowService.data);
                 service.data = flowService.data;
             });
         
