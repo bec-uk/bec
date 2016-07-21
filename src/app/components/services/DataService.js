@@ -88,7 +88,6 @@
             meta.unit = units[params.unitIndex];
             meta.site = site;
             meta.params = params;
-            meta.duration.days = Math.ceil(moment.duration(moment(params.exportEndDate).diff(moment(params.exportStartDate))).asDays());
             meta.period = quantitiesService.resolutions.filter(function(resolution) { return resolution.code == params.resolution} )[0].period;
             return meta;
         }
@@ -105,6 +104,10 @@
                 params.siteShortCode = site.shortcode;
                 updateData().then(function() {
                     convertData();
+                    // Update meta data for number of days based on data in dataConverted
+                    var firstMoment = moment(dataConverted[0][0], "x");
+                    var lastMoment = moment(dataConverted[dataConverted.length - 1][0], "x");
+                    meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
                 }); 
             });
         }
