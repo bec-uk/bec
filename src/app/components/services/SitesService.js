@@ -97,6 +97,28 @@
             longitude: -2.582581
           }
       },
+      {
+          id: 8,
+          shortcode: 'acta',
+          name: 'ACTA Community Theatre',
+          meterSerial: 16017855,
+          address: 'Gladstone St, Avon, Bristol, BS3 3AY',
+          location: {
+            latitude: 51.4393698,
+            longitude: -2.6053986
+          }
+      },
+      {
+          id: 9,
+          shortcode: 'wsg',
+          name: 'Wick Sports Ground',
+          meterSerial: 16017855,
+          address: 'Wick',
+          location: {
+            latitude: 51.4468948,
+            longitude: -2.4232650
+          }
+      },
     ];
 
     return {
