@@ -35,7 +35,7 @@
               _.object = _.zipObject;
           } 
 
-          self.mapParams = { center: { latitude: 51.48, longitude: -2.5879 }, zoom: 12 };
+          self.mapParams = { center: { latitude: 51.48, longitude: -2.53 }, zoom: 12 };
 
 
       });
