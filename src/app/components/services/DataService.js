@@ -3,11 +3,11 @@
 
     angular.module('app')
         .service('dataService', [
-        '$q', 'simtricityService', 'sitesService', 'toastService', 'quantitiesService', '$interval', '$location',
+        '$q', 'simtricityService', 'forecastService', 'sitesService', 'toastService', 'quantitiesService', '$interval', '$location',
       dataService
     ]);
 
-    function dataService($q, simtricityService, sitesService, toastService, quantitiesService, $interval, $location){
+    function dataService($q, simtricityService, forecastService, sitesService, toastService, quantitiesService, $interval, $location){
 
         var dataOriginal = [];
         var dataConverted = [];
@@ -114,7 +114,60 @@
 
         function updateData() {
 
-            //update data using simtricity service TODO Toast notifications sometimes get stuck. Fix before renabling.
+            //update data using simtricity service
+
+            return $q.all([
+                simtricityService.retrieve(params).then(function() {
+                    var data = [];
+                    for (var i = simtricityService.data.length - 1; i >= 0; i--) {
+                        data.unshift([
+                            moment(simtricityService.data[i].Time).format('x'),
+                            simtricityService.data[i].Import// * units[params.unitIndex].factor
+                        ])
+                    };
+                    //console.log(data);
+                    //console.log('S'+simtricityService.data.length);
+                    return data;
+                }),
+                forecastService.retrieve(params).then(function() {
+                    var icons = [];
+                    for (var i = forecastService.data.length - 1; i >= 0; i--) {
+                        if (forecastService.data[i].hasOwnProperty('date')) {
+                            icons.unshift([
+                                moment(forecastService.data[i].date, 'YYYY-MM-DD').format('x'),
+                                forecastService.data[i].icon
+                            ])
+                        }
+                        else if (forecastService.data[i].hasOwnProperty('datetime')) {
+                            icons.unshift([
+                                moment(forecastService.data[i].datetime, 'YYYY-MM-DD HH:mm:ss').format('x'),
+                                forecastService.data[i].icon
+                            ])
+                        }
+
+                    };
+                    //console.log(icons);
+                    //console.log('F'+forecastService.data.length);
+                    return icons;
+                }),
+            ])
+            .then(function(responses) {
+                dataOriginal = responses[0];
+                var icons = responses[1];
+                for (var i = dataOriginal.length - 1; i >= 0; i--) {
+                    if (typeof(icons[i])!=='undefined') {
+                        if (dataOriginal[i][0]==icons[i][0]) {
+                            dataOriginal[i].push(icons[i][1]);
+                            dataOriginal[i].push(icons[i][0]);
+                        }
+                    }
+                }
+                //console.log(dataOriginal);
+            });
+
+            /*
+            //old form with single api call - not sure where toast stuff goes in new structure
+            //TODO Toast notifications sometimes get stuck. Fix before renabling.
             // var toast = toastService.createPersistentToast('Retrieving data from Simtricity');
             return simtricityService.retrieve(params).then(function() {
                 dataOriginal = [];
@@ -124,8 +177,10 @@
                         simtricityService.data[i].Import// * units[params.unitIndex].factor
                     ])
                 };
-                // toastService.hidePersistentToast(toast);
             });
+            // toastService.hidePersistentToast(toast);
+            */
+        
         }
 
         function convertData() {

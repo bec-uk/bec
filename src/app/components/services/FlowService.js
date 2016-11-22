@@ -28,7 +28,7 @@
             var port = $location.port().toString();
 
             if (port.substring(0,2) === '30')
-                var simHost = 'http://simtricity_proxy.local:8888/';
+                var simHost = 'http://simtricity_proxy.local/';
             else
                 var simHost = '/proxy.php/';
 
@@ -48,7 +48,7 @@
             if (params.hasOwnProperty('exportStartDate'))
                 flowStartDate = moment(params.exportStartDate).format(simtricityFormat);
             else
-                flowStartDate = moment().subtract(3, 'days').format(simtricityFormat);
+                flowStartDate = moment().subtract(30, 'days').format(simtricityFormat);
 
             if (params.hasOwnProperty('exportEndDate'))
                 flowEndDate = moment(params.exportEndDate).format(simtricityFormat);
