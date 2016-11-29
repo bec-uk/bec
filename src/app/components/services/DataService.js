@@ -114,8 +114,7 @@
 
         function updateData() {
 
-            //update data using simtricity service
-
+            //update data using simtricity service and request data from forecast service to merge into results
             return $q.all([
                 simtricityService.retrieve(params).then(function() {
                     var data = [];
@@ -125,8 +124,6 @@
                             simtricityService.data[i].Import// * units[params.unitIndex].factor
                         ])
                     };
-                    //console.log(data);
-                    //console.log('S'+simtricityService.data.length);
                     return data;
                 }),
                 forecastService.retrieve(params).then(function() {
@@ -146,8 +143,6 @@
                         }
 
                     };
-                    // console.log(icons);
-                    //console.log('F'+forecastService.data.length);
                     return icons;
                 }),
             ])
@@ -163,22 +158,6 @@
                     }
                 }
             });
-
-            /*
-            //old form with single api call - not sure where toast stuff goes in new structure
-            //TODO Toast notifications sometimes get stuck. Fix before renabling.
-            // var toast = toastService.createPersistentToast('Retrieving data from Simtricity');
-            return simtricityService.retrieve(params).then(function() {
-                dataOriginal = [];
-                for (var i = simtricityService.data.length - 1; i >= 0; i--) {
-                    dataOriginal.unshift([
-                        moment(simtricityService.data[i].Time).format('x'),
-                        simtricityService.data[i].Import// * units[params.unitIndex].factor
-                    ])
-                };
-            });
-            // toastService.hidePersistentToast(toast);
-            */
         
         }
 
@@ -195,7 +174,6 @@
 
         //Auto update of data - TODO: move some of this to a separate service.
         function toggleAutoUpdate() {
-            // console.log('toggle');
             if(autoUpdating) 
                 stopAutoUpdate();
             else

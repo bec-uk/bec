@@ -22,7 +22,6 @@
         .loadAllItems()
         .then(function(siteData) {
             self.siteData = [].concat(siteData);
-            console.log(self.siteData);
         });
 
       uiGmapGoogleMapApi.then(function(maps) {
