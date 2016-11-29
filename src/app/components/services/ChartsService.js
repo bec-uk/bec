@@ -96,6 +96,9 @@
       
         var bars = d3.select('.nv-bars');
 
+        var plotArea = d3.select('.nv-barsWrap');
+        var plotHeight = plotArea.node().getBBox().height;
+
         var count = 0;
         d3.selectAll('.nv-bar').each(function(bar){
 
@@ -113,7 +116,16 @@
             if(iconWidth >= weatherIconsDrawThreshold) {
               bars.append('image')
                 .attr('transform', b.attr('transform'))
-                .attr('y', barY - (iconWidth * 0.1))
+                .attr('y', function() {
+                  var naturalY = barY - (iconWidth * 0.1);
+                  console.log(naturalY, plotHeight);
+                  if (naturalY > (plotHeight - (iconWidth * 0.8))) {
+                    return plotHeight - iconWidth;
+                  }
+                  else {
+                    return naturalY;                    
+                  }
+                })
                 .attr('x', (barWidth/2)-(iconWidth/2))
                 .attr('width', iconWidth)
                 .attr('height', iconWidth)
