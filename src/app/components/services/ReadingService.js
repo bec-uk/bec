@@ -19,8 +19,6 @@
 
     function get(params) {
 
-        // var simHost = 'https://trial.simtricity.com';
-
         var port = $location.port().toString();
         
         if(port.substring(0,2) === '30')
@@ -35,7 +33,6 @@
         var resolution = 'P1D';
 
         var simtricityFormat = 'YYYY-MM-DDT00:00:00[Z]'; //formats date using moment.js
-
         //date format of API: YYYY-MM-DDT00:00:00Z
 
         //if date not set, default to one month ago
@@ -63,7 +60,7 @@
         }
 
         // Build the request:
-        //  form is GET /export/meter/{meter-type}/{meter-serial}
+        // Format is GET /export/meter/{meter-type}/{meter-serial}
         var exportSvcUri = simHost + '/a/export/meter/' + meterType + '/' + params.meterSerial;
 
         // Add the REST token to the request

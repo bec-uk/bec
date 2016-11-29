@@ -62,8 +62,8 @@
             PT1H: "",
             P1D: "daily",
           },
-          //forecast resolution can be added as db endpoibt supports them
-          //hourly is highest res in db, returned by default
+          //forecast resolution can be added as db endpoint is updated to support them
+          //hourly is currently highest res in db, and returned by default
 
           units: [
             {name: "Energy generation", unit: "kWh", factor: 1, prefix: "", suffix: "kWh", fixed: true, icon: 'wb_sunny'},
