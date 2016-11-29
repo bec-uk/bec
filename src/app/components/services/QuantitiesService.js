@@ -76,12 +76,16 @@
           weatherIcons: {
             'clear-day': 'Sun.svg',
             'partly-cloudy-day': 'Cloud-Sun.svg',
+            'partly-cloudy-night': 'Cloud-Sun.svg',
+            'wind': 'Cloud-Wind.svg',
             'cloudy': 'Cloud.svg',
             'rain': 'Cloud-Rain.svg',
             'sleet': 'Cloud-Snow.svg',
             'snow': 'Snowflake.svg',
             'fog': 'Cloud-Fog.svg',
-          }
+          },
+
+          weatherIconsDrawThreshold: 20
 
 
       };

@@ -112,48 +112,37 @@
       addWeatherIcons: function(chartSeries) {
 
         var weatherIcons = quantitiesService.weatherIcons;
-        
+        var weatherIconsDrawThreshold = quantitiesService.weatherIconsDrawThreshold;
+      
+        var bars = d3.select('.nv-bars');
+
         var count = 0;
         d3.selectAll('.nv-bar').each(function(bar){
 
           var iconClass = chartSeries[0].values[count][2];
 
-          var b = d3.select(this);
+          if(typeof iconClass !== "undefined") {
 
-          var bars = d3.select('.nv-bars');
+            var b = d3.select(this);
+            var barWidth = b.attr('width');
+            var barHeight = b.attr('height');
+            var barY = b.attr('y');
 
-          // Remove previous labels if there is any
-          b.selectAll('text').remove(); 
-          // g.selectAll('.nv-bar').each(function(bar){
-          // var b = d3.select(this);
-          var barWidth = b.attr('width');
-          var barHeight = b.attr('height');
+            var iconWidth = Math.ceil(barWidth * 1.5);
 
-          bars.append('image')
-            // Transforms shift the origin point then the x and y of the bar
-            // is altered by this transform. In order to align the labels
-            // we need to apply this transform to those.
-            .attr('transform', b.attr('transform'))
-            // .text(label)
-            .attr('y', function(){
-              // Center label vertically
-              var height = b[0][0].getBBox().height;
-              
-              return parseFloat(b.attr('y')) -60; // 15 is the label's margin from the top of bar
-            })
-            .attr('x', function(){
-              // Center label horizontally
-              var width = b[0][0].getBBox().width;
-              console.log(b.attr('transform'), width);
-              // return parseFloat(width / 2);
-              return 0;
-            })
+            if(iconWidth >= weatherIconsDrawThreshold) {
+              bars.append('image')
+                .attr('transform', b.attr('transform'))
+                .attr('y', barY - (iconWidth * 0.1))
+                .attr('x', (barWidth/2)-(iconWidth/2))
+                .attr('width', iconWidth)
+                .attr('height', iconWidth)
+                .attr('xlink:href', '/assets/images/weather-icons/' + weatherIcons[iconClass])
+                .attr('class', 'icon icon-' + iconClass);
+            }
 
-            .attr('xlink:href', '/assets/images/weather-icons/' + weatherIcons[iconClass])
-            
-            .attr('class', 'icon icon-' + iconClass);
+          }
 
-          // });
           count++;
 
         });

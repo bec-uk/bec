@@ -146,7 +146,7 @@
                         }
 
                     };
-                    //console.log(icons);
+                    // console.log(icons);
                     //console.log('F'+forecastService.data.length);
                     return icons;
                 }),
@@ -162,7 +162,6 @@
                         }
                     }
                 }
-                //console.log(dataOriginal);
             });
 
             /*
@@ -184,21 +183,19 @@
         }
 
         function convertData() {
-
             dataConverted = [];
-
             for (var i = dataOriginal.length - 1; i >= 0; i--) {
                 dataConverted.unshift([
                     dataOriginal[i][0],
-                    dataOriginal[i][1] * units[params.unitIndex].factor
+                    dataOriginal[i][1] * units[params.unitIndex].factor,
+                    dataOriginal[i][2]
                 ])
             }
-
         }
 
         //Auto update of data - TODO: move some of this to a separate service.
         function toggleAutoUpdate() {
-            console.log('toggle');
+            // console.log('toggle');
             if(autoUpdating) 
                 stopAutoUpdate();
             else

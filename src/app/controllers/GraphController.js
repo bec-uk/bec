@@ -21,12 +21,16 @@
     // chart options from chartService
     var chartOptions = chartsService.historicalBarChartOptions;
 
-    // callback for adding weather icons when chart object is created. should be hooked into draw complete event rather than using the 5000ms timeout.
+    // chart callbacks
     chartOptions.chart.dispatch = {
         renderEnd: function() {
             chartsService.clearWeatherIcons();
-            chartsService.addWeatherIcons(chartSeries);
-        }
+            var resolution = dataService.getParams().resolution;
+            // check this is a resolution for which we have weather data and draw icons if so
+            if(quantitiesService.resolutionConversions.hasOwnProperty(resolution)) {
+                chartsService.addWeatherIcons(chartSeries);
+            }
+        }                    
     }  
 
     //getters for chart data and options to bind to chart
