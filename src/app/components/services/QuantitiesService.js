@@ -71,7 +71,18 @@
             {name: "Value of electricity generated", unit: "£", factor: 0.14, prefix: "£", suffix: "", fixed: true, icon: '£'},
             {name: "Days of electricity for an average person", unit: "", factor: 1/13, prefix: "", suffix: "days of electricity",fixed: false, icon: 'person'},
             {name: "Cups of tea boiled", unit: "", factor: 1/0.025, prefix: "", suffix: "cups", icon: "free_breakfast", fixed: false},
-          ]
+          ],
+
+          weatherIcons: {
+            'clear-day': 'Sun.svg',
+            'partly-cloudy-day': 'Cloud-Sun.svg',
+            'cloudy': 'Cloud.svg',
+            'rain': 'Cloud-Rain.svg',
+            'sleet': 'Cloud-Snow.svg',
+            'snow': 'Snowflake.svg',
+            'fog': 'Cloud-Fog.svg',
+          }
+
 
       };
 

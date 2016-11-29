@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('GraphController', [
-      'dataService', 'chartsService', '$interval', '$rootScope',
+      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService',
       GraphController
     ]);
 
-  function GraphController(dataService, chartsService, $interval, $rootScope) {  
+  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService) {  
 
     self = this;
     
@@ -20,6 +20,14 @@
 
     // chart options from chartService
     var chartOptions = chartsService.historicalBarChartOptions;
+
+    // callback for adding weather icons when chart object is created. should be hooked into draw complete event rather than using the 5000ms timeout.
+    chartOptions.chart.dispatch = {
+        renderEnd: function() {
+            chartsService.clearWeatherIcons();
+            chartsService.addWeatherIcons(chartSeries);
+        }
+    }  
 
     //getters for chart data and options to bind to chart
     self.getChartSeries = function() {
@@ -34,5 +42,6 @@
     }
 
   }
+
 
 })();

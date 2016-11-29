@@ -3,11 +3,11 @@
 
   angular.module('app')
         .service('chartsService', [
-        '$q',
+        '$q', 'quantitiesService',
       chartsService
   ]);
 
-  function chartsService($q){
+  function chartsService($q, quantitiesService){
     
     return{
 
@@ -101,6 +101,63 @@
           //         'margin': '10px 13px 0px 7px'
           //     }
           // }
+      },
+
+      clearWeatherIcons: function() {
+        d3.selectAll('image').each(function(icon) {
+          d3.select(this).remove();
+        })
+      },
+
+      addWeatherIcons: function(chartSeries) {
+
+        var weatherIcons = quantitiesService.weatherIcons;
+        
+        var count = 0;
+        d3.selectAll('.nv-bar').each(function(bar){
+
+          var iconClass = chartSeries[0].values[count][2];
+
+          var b = d3.select(this);
+
+          var bars = d3.select('.nv-bars');
+
+          // Remove previous labels if there is any
+          b.selectAll('text').remove(); 
+          // g.selectAll('.nv-bar').each(function(bar){
+          // var b = d3.select(this);
+          var barWidth = b.attr('width');
+          var barHeight = b.attr('height');
+
+          bars.append('image')
+            // Transforms shift the origin point then the x and y of the bar
+            // is altered by this transform. In order to align the labels
+            // we need to apply this transform to those.
+            .attr('transform', b.attr('transform'))
+            // .text(label)
+            .attr('y', function(){
+              // Center label vertically
+              var height = b[0][0].getBBox().height;
+              
+              return parseFloat(b.attr('y')) -60; // 15 is the label's margin from the top of bar
+            })
+            .attr('x', function(){
+              // Center label horizontally
+              var width = b[0][0].getBBox().width;
+              console.log(b.attr('transform'), width);
+              // return parseFloat(width / 2);
+              return 0;
+            })
+
+            .attr('xlink:href', '/assets/images/weather-icons/' + weatherIcons[iconClass])
+            
+            .attr('class', 'icon icon-' + iconClass);
+
+          // });
+          count++;
+
+        });
+
       }
  
     };
