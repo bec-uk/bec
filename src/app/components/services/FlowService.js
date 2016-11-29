@@ -23,8 +23,6 @@
          */
         function get(params, flowType)
         {
-            // var simHost = 'https://trial.simtricity.com';
-
             var port = $location.port().toString();
 
             if (port.substring(0,2) === '30')
@@ -41,7 +39,6 @@
                 flowType = 'gen';
 
             var simtricityFormat = 'YYYY-MM-DDT00:00'; //formats date using moment.js
-
             //date format of API: YYYY-MM-DDT00:00:00Z
 
             //if date not set, default to 3 days ago
@@ -70,7 +67,7 @@
         function gvizRequest(simHost, accessToken, flowStartDate, flowEndDate, resolution, flowToken, flowType)
         {
             // Build the request:
-            //   format is GET /gviz/flow?<args>
+            // Format is GET /gviz/flow?<args>
             var flowSvcUri = simHost + '/gviz/flow';
 
             // Add the REST token to the request

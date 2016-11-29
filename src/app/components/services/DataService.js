@@ -150,10 +150,12 @@
                 dataOriginal = responses[0];
                 var icons = responses[1];
                 for (var i = dataOriginal.length - 1; i >= 0; i--) {
-                    if (typeof(icons[i])!=='undefined') {
-                        if (dataOriginal[i][0]==icons[i][0]) {
-                            dataOriginal[i].push(icons[i][1]);
-                            dataOriginal[i].push(icons[i][0]);
+                    for (var j = icons.length - 1; j >= 0; j--) {
+                        if (typeof(icons[j])!=='undefined') {
+                            if (dataOriginal[i][0]==icons[j][0]) {
+                                dataOriginal[i].push(icons[j][1]);
+                                dataOriginal[i].push(icons[j][0]);
+                            }
                         }
                     }
                 }
