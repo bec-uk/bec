@@ -5,3 +5,9 @@ RewriteEngine on
     RewriteRule ^.*$ - [NC,L]
 
     RewriteRule ^(.*) /index.html [NC,L]
+
+# Ensure the simtricity_token.txt file cannot be read
+<Files simtricity_token.txt>
+    Order Allow,Deny
+    Deny from all
+</Files>
