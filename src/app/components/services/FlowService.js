@@ -101,8 +101,10 @@
         {
             var flowTokens = null;
 
-            // Retrieve flow tokens from bec-monitoring back-end
-            var tokenUri = 'http://livegen.bristolenergy.coop/services/data.php?dataset=simtricity_flows&site_shortcode=' + siteShortCode;
+            // Retrieve flow tokens from bec-monitoring back-end - requires bec_services
+            // repository on the same server or insertion of the bec_services server in the
+            // tokenUri string below.
+            var tokenUri = '/services/data.php?dataset=simtricity_flows&site_shortcode=' + siteShortCode;
             return $http.get(tokenUri).success(function(data) {
                 service.flowTokens = data[0];
             });
