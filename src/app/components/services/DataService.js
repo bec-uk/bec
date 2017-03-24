@@ -19,7 +19,8 @@
             exportEndDate: moment().subtract(1, 'days').toDate(),
             resolution: 'P1D',
             meterSerial: '',
-            unitIndex: 0
+            unitIndex: 0,
+            drawWeatherIcons: false,
         };
         
         var units = quantitiesService.units;
