@@ -118,7 +118,6 @@
                 .attr('transform', b.attr('transform'))
                 .attr('y', function() {
                   var naturalY = barY - (iconWidth * 0.1);
-                  console.log(naturalY, plotHeight);
                   if (naturalY > (plotHeight - (iconWidth * 0.8))) {
                     return plotHeight - iconWidth;
                   }
