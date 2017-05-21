@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('GraphController', [
-      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService',
+      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService', '$window', '$scope',
       GraphController
     ]);
 
-  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService) {  
+  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope) {  
 
     self = this;
     
@@ -30,7 +30,7 @@
             if(quantitiesService.resolutionConversions.hasOwnProperty(resolution)) {
                 chartsService.addWeatherIcons(chartSeries);
             }
-        }                    
+        }
     }  
 
     //getters for chart data and options to bind to chart
@@ -42,6 +42,18 @@
         var meta = dataService.getMeta();
         chartOptions.chart.yAxis.axisLabel = meta.unit.unit;
         chartOptions.title.text = meta.unit.name + ' for ' + meta.site.name;
+
+        // set the chart height based on height of other elements on the screen
+        var graphControls = angular.element(document.querySelector('#graphControls'));
+        var topMenu = angular.element(document.querySelector('#topMenu'));
+        if(topMenu.length && graphControls.length) {
+            var heightAvailable = $window.innerHeight - topMenu[0].offsetHeight - graphControls[0].offsetHeight;
+            if(heightAvailable > chartsService.minHeight) {
+                chartOptions.chart.height = heightAvailable - 32; // 32 accounts for padding
+            $scope.api.refresh();
+            }       
+        }
+
         return chartOptions;
     }
 

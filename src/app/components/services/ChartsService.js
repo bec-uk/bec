@@ -11,6 +11,8 @@
     
     return{
 
+      minHeight: 150,
+
       series: {
           key: "Quantity" ,
           bar: true,
