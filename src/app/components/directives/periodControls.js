@@ -26,9 +26,9 @@
 })();
 
 
-PeriodControlsController.$inject = ['$state','quantitiesService','dataService','sitesService'];
+PeriodControlsController.$inject = ['$state','quantitiesService','dataService','sitesService','chartsService'];
 
-function PeriodControlsController($state, quantitiesService, dataService, sitesService) {
+function PeriodControlsController($state, quantitiesService, dataService, sitesService, chartsService) {
     
     var self = this;    
 
@@ -39,6 +39,20 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
 
     self.refreshData = function() {
         dataService.setParams(self.params, $state.params.shortcode);
+    }
+
+    self.toggleWeatherIcons = function() {
+        //Horrible work around because drawing icons is hooked into the render function
+        //and changing this checkbox does not cause data to be re-rendered.
+        //Hence we need to trigger manually and horribly.
+        if (self.params.drawWeatherIcons) {
+            var chartSeries = [chartsService.series];
+            chartSeries[0].values = dataService.getData();
+            chartsService.addWeatherIcons(chartSeries);
+        }
+        else {
+            chartsService.clearWeatherIcons();
+        }
     }
 
 }

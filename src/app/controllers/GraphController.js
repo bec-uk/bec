@@ -27,7 +27,7 @@
             chartsService.clearWeatherIcons();
             var resolution = dataService.getParams().resolution;
             // check this is a resolution for which we have weather data and draw icons if so
-            if(quantitiesService.resolutionConversions.hasOwnProperty(resolution)) {
+            if(quantitiesService.resolutionConversions.hasOwnProperty(resolution) && dataService.getParams().drawWeatherIcons) {
                 chartsService.addWeatherIcons(chartSeries);
             }
         }
