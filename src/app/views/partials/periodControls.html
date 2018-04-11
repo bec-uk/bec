@@ -28,3 +28,11 @@
 
     </section>
 </md-toolbar>
+
+<md-toolbar ng-if="multisite == 1" id="graphControls" flex layout-padding class="md-menu-toolbar">
+    <section layout="column" layout-sm="column" layout-align="center top" layout-wrap>
+        <md-input-container>
+            <md-checkbox ng-repeat="site in pc.sites" ng-click="pc.selectSite(site, selected)" ng-checked="pc.isSelected(site, selected)">{{site.name}}</md-checkbox>
+        </md-input-container>    
+    </section>
+</md-toolbar>

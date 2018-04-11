@@ -131,6 +131,13 @@
           });
 
           return $q.when(site[0]);
+      },
+      loadItems: function(shortcodes) {
+          var sites = siteData.filter(function( obj ) {
+             return shortcodes.indexOf(obj.shortcode) > -1;
+          });
+
+          return $q.when(sites);
       }
     };
   }

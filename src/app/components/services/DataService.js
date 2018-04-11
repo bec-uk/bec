@@ -9,10 +9,10 @@
 
     function dataService($q, simtricityService, forecastService, sitesService, toastService, quantitiesService, $interval, $location){
 
-        var dataOriginal = [];
-        var dataConverted = [];
+        var dataOriginal = {};
+        var dataConverted = {};
         
-        var site = {};
+        var sites = [];
 
         var params = {
             exportStartDate: moment().subtract(60, 'days').toDate(),
@@ -33,7 +33,7 @@
         };
 
         var meta = {
-            site: site,
+            site: {},
             params: params,
             unit: {},
             duration: {},
@@ -87,7 +87,7 @@
 
         function getMeta() {
             meta.unit = units[params.unitIndex];
-            meta.site = site;
+            meta.site = sites.length ? sites[0] : {};
             meta.params = params;
             meta.period = quantitiesService.resolutions.filter(function(resolution) { return resolution.code == params.resolution} )[0].period;
             return meta;
@@ -97,23 +97,27 @@
             return params;
         }
 
-        function setParams(newParams, siteCode) {
+        function setParams(newParams, siteCodes) {
+            console.log(siteCodes);
             params = newParams;
-            sitesService.loadItem(siteCode).then(function(siteData) {
-                site = siteData;
-                params.meterSerial = site.meterSerial;
-                params.siteShortCode = site.shortcode;
-                updateData().then(function() {
-                    convertData();
-                    // Update meta data for number of days based on data in dataConverted
-                    var firstMoment = moment(dataConverted[0][0], "x");
-                    var lastMoment = moment(dataConverted[dataConverted.length - 1][0], "x");
-                    meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
-                }); 
+            sitesService.loadItems(siteCodes).then(function(sitesData) {
+                sites = sitesData;
+                angular.forEach(sites, function(site) {
+                    params.meterSerial = site.meterSerial;
+                    params.siteShortCode = site.shortcode;
+                    updateData(site.shortcode).then(function() {
+                        convertData(site.shortcode);
+                        // Update meta data for number of days based on data in dataConverted
+                        console.log(dataConverted);
+                        var firstMoment = moment(dataConverted[site.shortcode][0][0], "x");
+                        var lastMoment = moment(dataConverted[site.shortcode][dataConverted[site.shortcode].length - 1][0], "x");
+                        meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
+                    }); 
+                });
             });
         }
 
-        function updateData() {
+        function updateData(siteCode) {
 
             //update data using simtricity service and request data from forecast service to merge into results
             return $q.all([
@@ -148,14 +152,14 @@
                 }),
             ])
             .then(function(responses) {
-                dataOriginal = responses[0];
+                dataOriginal[siteCode] = responses[0];
                 var icons = responses[1];
-                for (var i = dataOriginal.length - 1; i >= 0; i--) {
+                for (var i = dataOriginal[siteCode].length - 1; i >= 0; i--) {
                     for (var j = icons.length - 1; j >= 0; j--) {
                         if (typeof(icons[j])!=='undefined') {
-                            if (dataOriginal[i][0]==icons[j][0]) {
-                                dataOriginal[i].push(icons[j][1]);
-                                dataOriginal[i].push(icons[j][0]);
+                            if (dataOriginal[siteCode][i][0]==icons[j][0]) {
+                                dataOriginal[siteCode][i].push(icons[j][1]);
+                                dataOriginal[siteCode][i].push(icons[j][0]);
                             }
                         }
                     }
@@ -164,13 +168,13 @@
         
         }
 
-        function convertData() {
-            dataConverted = [];
-            for (var i = dataOriginal.length - 1; i >= 0; i--) {
-                dataConverted.unshift([
-                    dataOriginal[i][0],
-                    dataOriginal[i][1] * units[params.unitIndex].factor,
-                    dataOriginal[i][2]
+        function convertData(siteCode) {
+            dataConverted[siteCode] = [];
+            for (var i = dataOriginal[siteCode].length - 1; i >= 0; i--) {
+                dataConverted[siteCode].unshift([
+                    dataOriginal[siteCode][i][0],
+                    dataOriginal[siteCode][i][1] * units[params.unitIndex].factor,
+                    dataOriginal[siteCode][i][2]
                 ])
             }
         }

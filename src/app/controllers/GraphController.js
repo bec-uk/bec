@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('GraphController', [
-      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService', '$window', '$scope',
+      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService', '$window', '$scope', '$state',
       GraphController
     ]);
 
-  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope) {  
+  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope, $state) {  
 
     self = this;
     
@@ -35,7 +35,14 @@
 
     //getters for chart data and options to bind to chart
     self.getChartSeries = function() {
-        chartSeries[0].values = dataService.getData();
+        var allData = dataService.getData();
+        var siteShortcode = $state.params.shortcode;
+        // check if dataservice response has the data for requested site and supply it or blank array
+        if(allData.hasOwnProperty(siteShortcode)) {
+            chartSeries[0].values = allData[siteShortcode];            
+        } else {
+            chartSeries[0].values = [];
+        }
         return chartSeries;
     }
     self.getChartOptions = function() {
