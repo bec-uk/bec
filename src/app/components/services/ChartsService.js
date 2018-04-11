@@ -18,6 +18,78 @@
           bar: true,
           values: []
       },
+
+      discreteBarChartOptions: {
+
+        chart: {
+            type: 'discreteBarChart',
+            height: 450,
+            margin : {
+                top: 20,
+                right: 20,
+                bottom: 50,
+                left: 55
+            },
+            x: function(d){return d.label;},
+            y: function(d){return d.value;},
+            showValues: true,
+            valueFormat: function(d){
+                return d3.format(',.4f')(d);
+            },
+            duration: 500,
+            xAxis: {
+                axisLabel: 'X Axis'
+            },
+            yAxis: {
+                axisLabel: 'Y Axis',
+                axisLabelDistance: -10
+            }
+        },
+        title: {
+            enable: true,
+            text: 'Title for Bar Chart'
+        }
+
+      },
+
+      lineChartOptions: {
+
+          chart: {
+
+              type: 'lineChart',
+              height: 450,
+              margin : {
+                  top: 20,
+                  right: 20,
+                  bottom: 40,
+                  left: 55
+              },
+              x: function(d){ return d.x; },
+              y: function(d){ return d.y; },
+              useInteractiveGuideline: true,
+              dispatch: {
+                  stateChange: function(e){ console.log("stateChange"); },
+                  changeState: function(e){ console.log("changeState"); },
+                  tooltipShow: function(e){ console.log("tooltipShow"); },
+                  tooltipHide: function(e){ console.log("tooltipHide"); }
+              },
+              xAxis: {
+                  axisLabel: 'Time (ms)'
+              },
+              yAxis: {
+                  axisLabel: 'Voltage (v)',
+                  tickFormat: function(d){
+                      return d3.format('.02f')(d);
+                  },
+                  axisLabelDistance: -10
+              }
+          },
+          title: {
+              enable: true,
+              text: 'Title for Line Chart'
+          }
+
+      },
  
       historicalBarChartOptions: {
 

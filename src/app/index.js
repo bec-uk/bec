@@ -31,6 +31,36 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
         controllerAs: 'vm',
         abstract: true
       })
+      .state('home.compare', {
+        redirectTo: 'totals',
+        url: '/compare',
+        templateUrl: 'app/views/compare.html',
+        controller: 'CompareController',
+        controllerAs: 'compare',
+        data: {
+          title: 'Compare'
+        }
+      })
+        .state('totals', {
+          parent: 'home.compare',
+          url: '/totals',
+          templateUrl: 'app/views/compare.totals.html',
+          controller: 'TotalsController',
+          controllerAs: 'totals',
+          data: {
+            title: 'Compare Totals'
+          }
+        })
+        .state('overtime', {
+          parent: 'home.compare',
+          url: '/overtime',
+          templateUrl: 'app/views/compare.overtime.html',
+          controller: 'OvertimeController',
+          controllerAs: 'overtime',
+          data: {
+            title: 'Compare Over Time'
+          }
+        })
       .state('home.map', {
         url: '/map',
         templateUrl: 'app/views/map.html',
@@ -79,7 +109,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
           title: 'List'
         }
       })
-     .state('home.about', {
+      .state('home.about', {
         url: '/about',
         templateUrl: 'app/views/about.html',
         data: {

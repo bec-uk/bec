@@ -11,6 +11,23 @@
 
     var menuItems = [
       {
+        name: 'Compare',
+        icon: 'compare',
+        sref: 'home.compare',
+        subItems: [
+          {
+            name: 'Totals',
+            sref: 'totals',
+            icon: 'dashboard'
+          },
+          {
+            name: 'Over Time',
+            sref: 'overtime',
+            icon: 'insert_chart'
+          },
+        ]
+      },
+      {
         name: 'Map',
         icon: 'map',
         sref: '.map'
@@ -30,7 +47,6 @@
             sref: 'headline',
             icon: 'dashboard'
           },
-
         ]
       },
       {

@@ -26,7 +26,7 @@
             var port = $location.port().toString();
 
             if (port.substring(0,2) === '30')
-                var simHost = 'http://simtricity_proxy.local/';
+                var simHost = 'http://simtricity_proxy.localhost/';
             else
                 var simHost = '/proxy.php/';
 
