@@ -11,7 +11,8 @@
 
         var dataOriginal = {};
         var dataConverted = {};
-        
+        var dataTotalled = {};
+
         var sites = [];
 
         var params = {
@@ -22,7 +23,7 @@
             unitIndex: 0,
             drawWeatherIcons: false,
         };
-        
+
         var units = quantitiesService.units;
 
         var summary = {
@@ -43,6 +44,7 @@
         var service = {
           getData: getData,
           getOriginalData: getOriginalData,
+          getTotalData: getTotalData,
           updateData: updateData,
           getMeta: getMeta,
           getParams: getParams,
@@ -55,7 +57,7 @@
         var autoUpdate = null;
 
         _setInitialParams();
-        return service;    
+        return service;
 
         // set initial parameters from query string
         function _setInitialParams() {
@@ -81,6 +83,10 @@
             return dataConverted;
         }
 
+        function getTotalData() {
+            return dataTotalled;
+        }
+
         function getOriginalData() {
             return dataOriginal;
         }
@@ -98,21 +104,21 @@
         }
 
         function setParams(newParams, siteCodes) {
-            console.log(siteCodes);
             params = newParams;
             sitesService.loadItems(siteCodes).then(function(sitesData) {
                 sites = sitesData;
+                removeSites(siteCodes);
                 angular.forEach(sites, function(site) {
                     params.meterSerial = site.meterSerial;
                     params.siteShortCode = site.shortcode;
                     updateData(site.shortcode).then(function() {
                         convertData(site.shortcode);
+                        totalData(site.shortcode);
                         // Update meta data for number of days based on data in dataConverted
-                        console.log(dataConverted);
                         var firstMoment = moment(dataConverted[site.shortcode][0][0], "x");
                         var lastMoment = moment(dataConverted[site.shortcode][dataConverted[site.shortcode].length - 1][0], "x");
                         meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
-                    }); 
+                    });
                 });
             });
         }
@@ -165,7 +171,7 @@
                     }
                 }
             });
-        
+
         }
 
         function convertData(siteCode) {
@@ -179,15 +185,22 @@
             }
         }
 
+        function totalData(siteCode) {
+            let total = dataOriginal[siteCode].reduce(function(accumulator, currentValue) {
+                return accumulator + parseFloat(currentValue[1]);
+            }, 0);
+            dataTotalled[siteCode] = total;
+        }
+
         //Auto update of data - TODO: move some of this to a separate service.
         function toggleAutoUpdate() {
-            if(autoUpdating) 
+            if(autoUpdating)
                 stopAutoUpdate();
             else
                 startAutoUpdate();
 
         }
-        
+
         function startAutoUpdate() {
             autoUpdating = true;
             autoUpdate = $interval(function() {
@@ -207,6 +220,25 @@
             $interval.cancel(autoUpdate);
         }
 
+        function removeSites(siteCodes) {
+            angular.forEach(dataOriginal, function(data, site) {
+                console.log(siteCodes, site, siteCodes.indexOf(site));
+                if(siteCodes.indexOf(site) < 0) {
+                    delete dataOriginal[site];
+                }
+            })
+            angular.forEach(dataConverted, function(data, site) {
+                if(siteCodes.indexOf(site) < 0) {
+                    delete dataConverted[site];
+                }
+            })
+            angular.forEach(dataTotalled, function(data, site) {
+                if(siteCodes.indexOf(site) < 0) {
+                    delete dataTotalled[site];
+                }
+            })
+        }
+
     }
-  
+
 })();
