@@ -20,8 +20,7 @@
 
         function retrieve(params) {
 
-            // let cacheKey = params.siteShortCode + params.exportStartDate + params.exportEndDate + params.resolution;
-            let cacheKey = params.siteShortCode;
+            let cacheKey = (params.siteShortCode + params.exportStartDate + params.exportEndDate + params.resolution).replace(/[^A-Z0-9]/ig, "_");
 
             let cacheResult = _checkCache(cacheKey);
 
