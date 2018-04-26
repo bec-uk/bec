@@ -127,12 +127,13 @@
 
             //update data using simtricity service and request data from forecast service to merge into results
             return $q.all([
-                simtricityService.retrieve(params).then(function() {
+                simtricityService.retrieve(params).then(function(simtricityResponse) {
+                    console.log(simtricityResponse);
                     var data = [];
-                    for (var i = simtricityService.data.length - 1; i >= 0; i--) {
+                    for (var i = simtricityResponse.data.length - 1; i >= 0; i--) {
                         data.unshift([
-                            moment(simtricityService.data[i].Time).format('x'),
-                            simtricityService.data[i].Import// * units[params.unitIndex].factor
+                            moment(simtricityResponse.data[i].Time).format('x'),
+                            simtricityResponse.data[i].Import// * units[params.unitIndex].factor
                         ])
                     };
                     return data;
