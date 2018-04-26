@@ -142,6 +142,13 @@
 
           return $q.when(site[0]);
       },
+      loadItemSync: function(shortcode) {
+          var site = siteData.filter(function( obj ) {
+             return obj.shortcode == shortcode;
+          });
+
+          return site[0];
+      },
       loadItems: function(shortcodes) {
           var sites = siteData.filter(function( obj ) {
              return shortcodes.indexOf(obj.shortcode) > -1;

@@ -3,11 +3,11 @@
   angular
     .module('app')
     .controller('TotalsController', [
-      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService', '$window', '$scope',
+      'dataService', 'chartsService', '$interval', '$rootScope', '$timeout', 'quantitiesService', '$window', '$scope', 'sitesService',
       TotalsController
     ]);
 
-  function TotalsController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope) {
+  function TotalsController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope, sitesService) {
 
     self = this;
 
@@ -32,7 +32,7 @@
         let newSeries = [];
         angular.forEach(allData, function(value, key) {
             newSeries.push({
-                label: key,
+                label: sitesService.loadItemSync(key).name,
                 value: value
             })
         })
