@@ -127,7 +127,7 @@
             latitude: 51.4468948,
             longitude: -2.4232650
           },
-          capacity: 27.36
+          capacity: 26.4
       },
     ];
 
