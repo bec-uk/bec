@@ -8,7 +8,7 @@
   ]);
 
   function chartsService($q, quantitiesService){
-    
+
     return{
 
       minHeight: 150,
@@ -64,8 +64,8 @@
                   bottom: 40,
                   left: 55
               },
-              x: function(d){ return d.x; },
-              y: function(d){ return d.y; },
+              x: function(d){ return d[0]; },
+              y: function(d){ return d[1]; },
               useInteractiveGuideline: true,
               dispatch: {
                   stateChange: function(e){ console.log("stateChange"); },
@@ -74,15 +74,16 @@
                   tooltipHide: function(e){ console.log("tooltipHide"); }
               },
               xAxis: {
-                  axisLabel: 'Time (ms)'
+                  axisLabel: 'Date',
+                  tickFormat: function(d){
+                      // return d3.time.format('%x')(new Date(d))
+                      return moment(d,'x').format('D/M/YY'); //Works!
+                  }
               },
               yAxis: {
-                  axisLabel: 'Voltage (v)',
-                  tickFormat: function(d){
-                      return d3.format('.02f')(d);
-                  },
+                  axisLabel: 'Output (kWh)',
                   axisLabelDistance: -10
-              }
+              },
           },
           title: {
               enable: true,
@@ -90,7 +91,7 @@
           }
 
       },
- 
+
       historicalBarChartOptions: {
 
           chart: {
@@ -103,7 +104,7 @@
                   left: 55
               },
               showValues: true,
-              x: function(d){ 
+              x: function(d){
                       if(typeof d[0] !== 'undefined')
                           return d[0];
                       else
@@ -167,7 +168,7 @@
 
         var weatherIcons = quantitiesService.weatherIcons;
         var weatherIconsDrawThreshold = quantitiesService.weatherIconsDrawThreshold;
-      
+
         var bars = d3.select('.nv-bars');
 
         var plotArea = d3.select('.nv-barsWrap');
@@ -196,7 +197,7 @@
                     return plotHeight - iconWidth;
                   }
                   else {
-                    return naturalY;                    
+                    return naturalY;
                   }
                 })
                 .attr('x', (barWidth/2)-(iconWidth/2))
@@ -213,9 +214,9 @@
         });
 
       }
- 
+
     };
 
   }
-  
+
 })();
