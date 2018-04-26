@@ -18,7 +18,8 @@
           location: {
             latitude: 51.425286,
             longitude: -2.596237
-          }
+          },
+          capacity: 24.99
       },
       {
           id: 1,
@@ -29,7 +30,8 @@
           location: {
             latitude: 51.4628408,
             longitude: -2.589774
-          }
+          },
+          capacity: 20.24
       },
       {
           id: 2,
@@ -40,7 +42,8 @@
           location: {
             latitude: 51.45433,
             longitude: -2.60174
-          }
+          },
+          capacity: 10
       },
       {
           id: 3,
@@ -51,7 +54,8 @@
           location: {
             latitude: 51.461752,
             longitude: -2.562805
-          }
+          },
+          capacity: 18
       },
       {
           id: 4,
@@ -62,7 +66,8 @@
           location: {
             latitude: 51.426252,
             longitude: -2.559184
-          }
+          },
+          capacity: 50
       },
       {
           id: 5,
@@ -73,7 +78,8 @@
           location: {
             latitude: 51.466706,
             longitude: -2.573856
-          }
+          },
+          capacity: 19.76
       },
       {
           id: 6,
@@ -84,7 +90,8 @@
           location: {
             latitude: 51.512519,
             longitude: -2.611585
-          }
+          },
+          capacity: 13.26
       },
       {
           id: 7,
@@ -95,7 +102,8 @@
           location: {
             latitude: 51.538164,
             longitude: -2.582581
-          }
+          },
+          capacity: 19.98
       },
       {
           id: 8,
@@ -106,7 +114,8 @@
           location: {
             latitude: 51.4393698,
             longitude: -2.6053986
-          }
+          },
+          capacity: 22.26
       },
       {
           id: 9,
@@ -117,7 +126,8 @@
           location: {
             latitude: 51.4468948,
             longitude: -2.4232650
-          }
+          },
+          capacity: 27.36
       },
     ];
 
