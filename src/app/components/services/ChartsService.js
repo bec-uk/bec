@@ -34,20 +34,23 @@
             y: function(d){return d.value;},
             showValues: true,
             valueFormat: function(d){
-                return d3.format(',.4f')(d);
+                return d3.format('.3r')(d);
             },
             duration: 500,
             xAxis: {
-                axisLabel: 'X Axis'
+                axisLabel: 'Site'
             },
             yAxis: {
-                axisLabel: 'Y Axis',
-                axisLabelDistance: -10
+                axisLabel: 'Output (kWh)',
+                axisLabelDistance: -10,
+                tickFormat: function(d){
+                    return d3.format('.3r')(d);
+                },
             }
         },
         title: {
             enable: true,
-            text: 'Title for Bar Chart'
+            text: 'PV Output per site'
         }
 
       },
@@ -90,7 +93,7 @@
           },
           title: {
               enable: true,
-              text: 'Title for Line Chart'
+              text: 'PV output over time'
           }
 
       },
