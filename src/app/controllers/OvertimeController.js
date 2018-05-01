@@ -32,6 +32,9 @@
         return chartSeries;
     }
     self.getChartOptions = function() {
+        var meta = dataService.getMeta();
+        chartOptions.chart.yAxis.axisLabel = meta.unit.unit;
+        chartOptions.title.text = meta.unit.name;
         return chartOptions;
     }
 
