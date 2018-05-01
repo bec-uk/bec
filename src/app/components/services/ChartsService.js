@@ -82,7 +82,10 @@
               },
               yAxis: {
                   axisLabel: 'Output (kWh)',
-                  axisLabelDistance: -10
+                  axisLabelDistance: -10,
+                  tickFormat: function(d){
+                      return d3.format('.3r')(d);
+                  },
               },
           },
           title: {
