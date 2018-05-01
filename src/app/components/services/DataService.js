@@ -22,6 +22,7 @@
             meterSerial: '',
             unitIndex: 0,
             drawWeatherIcons: false,
+            normalise: false
         };
 
         var units = quantitiesService.units;
@@ -111,9 +112,14 @@
                 angular.forEach(sites, function(site) {
                     params.meterSerial = site.meterSerial;
                     params.siteShortCode = site.shortcode;
+                    // check normalise parameter and set normalise divisor
+                    let normaliseDivisor = 1;
+                    if(params.normalise) {
+                        normaliseDivisor = site.capacity;
+                    }
                     updateData(site.shortcode).then(function() {
-                        convertData(site.shortcode);
-                        totalData(site.shortcode);
+                        convertData(site.shortcode, normaliseDivisor);
+                        totalData(site.shortcode, normaliseDivisor);
                         // Update meta data for number of days based on data in dataConverted
                         var firstMoment = moment(dataConverted[site.shortcode][0][0], "x");
                         var lastMoment = moment(dataConverted[site.shortcode][dataConverted[site.shortcode].length - 1][0], "x");
@@ -175,22 +181,22 @@
 
         }
 
-        function convertData(siteCode) {
+        function convertData(siteCode, normaliseDivisor) {
             dataConverted[siteCode] = [];
             for (var i = dataOriginal[siteCode].length - 1; i >= 0; i--) {
                 dataConverted[siteCode].unshift([
                     dataOriginal[siteCode][i][0],
-                    dataOriginal[siteCode][i][1] * units[params.unitIndex].factor,
+                    (dataOriginal[siteCode][i][1] * units[params.unitIndex].factor) / normaliseDivisor,
                     dataOriginal[siteCode][i][2]
                 ])
             }
         }
 
-        function totalData(siteCode) {
+        function totalData(siteCode, normaliseDivisor) {
             let total = dataOriginal[siteCode].reduce(function(accumulator, currentValue) {
                 return accumulator + parseFloat(currentValue[1]);
             }, 0);
-            dataTotalled[siteCode] = total;
+            dataTotalled[siteCode] = total / normaliseDivisor;
         }
 
         //Auto update of data - TODO: move some of this to a separate service.
