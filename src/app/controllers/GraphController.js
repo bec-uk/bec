@@ -7,10 +7,10 @@
       GraphController
     ]);
 
-  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope, $state) {  
+  function GraphController(dataService, chartsService, $interval, $rootScope, $timeout, quantitiesService, $window, $scope, $state) {
 
     self = this;
-    
+
     self.autoUpdate = null;
 
     // chart series format from chartService
@@ -31,7 +31,7 @@
                 chartsService.addWeatherIcons(chartSeries);
             }
         }
-    }  
+    }
 
     //getters for chart data and options to bind to chart
     self.getChartSeries = function() {
@@ -39,7 +39,7 @@
         var siteShortcode = $state.params.shortcode;
         // check if dataservice response has the data for requested site and supply it or blank array
         if(allData.hasOwnProperty(siteShortcode)) {
-            chartSeries[0].values = allData[siteShortcode];            
+            chartSeries[0].values = allData[siteShortcode];
         } else {
             chartSeries[0].values = [];
         }
@@ -57,8 +57,10 @@
             var heightAvailable = $window.innerHeight - topMenu[0].offsetHeight - graphControls[0].offsetHeight;
             if(heightAvailable > chartsService.minHeight) {
                 chartOptions.chart.height = heightAvailable - 32; // 32 accounts for padding
-            $scope.api.refresh();
-            }       
+                if($scope.hasOwnProperty('api')) {
+                    $scope.api.refresh();
+                }
+            }
         }
 
         return chartOptions;

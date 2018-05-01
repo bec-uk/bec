@@ -3,11 +3,11 @@
 
     angular.module('app')
         .service('dataService', [
-        '$q', 'simtricityService', 'forecastService', 'sitesService', 'toastService', 'quantitiesService', '$interval', '$location',
+        '$q', 'simtricityService', 'forecastService', 'sitesService', 'toastService', 'quantitiesService', '$interval', '$location', '$state',
       dataService
     ]);
 
-    function dataService($q, simtricityService, forecastService, sitesService, toastService, quantitiesService, $interval, $location){
+    function dataService($q, simtricityService, forecastService, sitesService, toastService, quantitiesService, $interval, $location, $state){
 
         var dataOriginal = {};
         var dataConverted = {};
@@ -217,7 +217,7 @@
                 )) {
                     params.exportStartDate = moment().startOf('year').toDate();
                     params.exportEndDate = moment().subtract(1, 'days').toDate();
-                    updateData();
+                    updateData($state.params.shortcode);
                 }
             }, 300000);
         }
