@@ -4,7 +4,7 @@
     <h4 class="center bold md-display-1">{{headline.meta().site.name}} - Summary for {{headline.meta().duration.days}} days</h4>
 
     <div layout-xs="column" layout="row">
-        
+
         <md-card class='bec-color-desaturated-cycle' ng-repeat="unit in headline.quantities.units | filter: { fixed: true }" flex-gt-xs>
 
             <md-card-title>
@@ -17,7 +17,7 @@
             </md-card-title>
 
 
-            <md-card-content layout="row">               
+            <md-card-content layout="row">
 
                     <div flex layout="column" class='summary' ng-repeat="summary in headline.quantities.fixedUnitSummaries">
                         <div class='title'>
@@ -28,7 +28,7 @@
                                 {{unit.prefix}}
                             </span>
                             <span class='value'>
-                                {{headline.originalData() | extractDataSeries | applyFilter:summary.filter | convertUnits:unit.factor | sigFigs:3}}
+                                {{headline.getOriginalData() | extractDataSeries | applyFilter:summary.filter | convertUnits:unit.factor | sigFigs:3}}
                             </span>
                             <span class='unit'>
                                {{unit.suffix}}
@@ -45,7 +45,7 @@
     <h4 class="center bold md-display-1">{{headline.meta().unit.name}} summary</h4>
 
     <div layout-xs="column" layout="row">
-        
+
         <md-card class='bec-color-desaturated-cycle-2' ng-repeat="unit in headline.quantities.variableUnitSummaries" flex-gt-xs>
 
             <md-card-title>
@@ -62,12 +62,12 @@
                             {{headline.meta().unit.prefix}}
                         </span>
                         <span class='value'>
-                            {{headline.data() | extractDataSeries | applyFilter:unit.filter | sigFigs:3}} 
+                            {{headline.getData() | extractDataSeries | applyFilter:unit.filter | sigFigs:3}}
                         </span>
                         <span class='unit'>
                            {{headline.meta().unit.suffix}}
                         </span>
-                    </div>        
+                    </div>
                 </div>
 
             </md-card-content>
