@@ -1,13 +1,13 @@
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2 md-sidenav-left" ng-hide="fullScreen" >
-    
+
     <md-toolbar md-theme="custom" class="md-hue-1">
 
         <md-button layout="row" layout-align="center center" class="md-toolbar-tools md-warn" href="http://www.bristolenergy.coop/" target="_blank">
             <img class='bec-logo' src='/assets/images/bec-logo.png' aria-label="Bristol Energy Coop">
         </md-button>
-    
+
         <md-divider></md-divider>
-    
+
         <md-button ng-repeat-start="item in vm.subMenuItems()" layout="column" layout-align="center center"
             class="capitalize" ng-click="vm.selectSubItem(item)"
             ui-sref-active="md-warn" ui-sref="{{item.sref}}">
@@ -21,12 +21,14 @@
         <md-divider ng-repeat-end></md-divider>
 
     </md-toolbar>
-    
+
+    <md-progress-circular ng-hide="!apiLoading" md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+
     <a href='http://www.spiraledge.co.uk' style="margin-top: auto;" target="_blank" class='built-by'>
         <h5>Built by:</h5>
         <img src='/assets/images/se-logo.svg'>
     </a>
-    
+
 </md-sidenav>
 
 <div layout="column" flex>
@@ -47,7 +49,7 @@
         </md-button>
     </md-toolbar>
 
-    
+
         <ui-view></ui-view>
-    
+
 </div>

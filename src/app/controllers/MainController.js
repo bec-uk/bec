@@ -20,6 +20,7 @@
     vm.selectItem = selectItem;
     vm.selectSubItem = selectSubItem;
     $rootScope.fullScreen = false;
+    $rootScope.loading = false;
 
     navService
       .loadAllItems()

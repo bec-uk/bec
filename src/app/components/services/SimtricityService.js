@@ -3,11 +3,11 @@
 
   angular.module('app')
         .service('simtricityService', [
-        '$q', 'flowService', 'readingService', 'utilitiesService', 'toastService',
+        '$q', 'flowService', 'readingService', 'utilitiesService', 'toastService', '$rootScope',
       simtricityService
   ]);
 
-  function simtricityService($q, flowService, readingService, utilitiesService, toastService){
+  function simtricityService($q, flowService, readingService, utilitiesService, toastService, $rootScope){
 
         var service = {
             data: [],
@@ -38,7 +38,9 @@
               });
             }
             else {
+              $rootScope.apiLoading = true;
               return flowService.get(params).then(function() {
+                  $rootScope.apiLoading = false;
                   _storeCache(flowService.data, cacheKey);
                   return $q.resolve({
                     data: flowService.data
