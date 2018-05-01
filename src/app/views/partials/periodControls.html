@@ -24,7 +24,7 @@
 
         <md-button ng-click="pc.refreshData()" class="md-raised md-primary">Update</md-button>
 
-        <md-checkbox ng-change="pc.toggleWeatherIcons()" ng-model="pc.params.drawWeatherIcons">Add weather data (experimental feature)</md-checkbox>
+        <md-checkbox ng-if="multisite == 0" ng-change="pc.toggleWeatherIcons()" ng-model="pc.params.drawWeatherIcons">Add weather data (experimental feature)</md-checkbox>
 
     </section>
 </md-toolbar>
