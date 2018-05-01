@@ -78,4 +78,11 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
     self.isSelected = function(site) {
         return self.selectedSites.indexOf(site.shortcode) > -1;
     }
+
+    self.selectAll = function() {
+        self.selectedSites = [];
+        angular.forEach(self.sites, function(site) {
+            self.selectedSites.push(site.shortcode);
+        });
+    }
 }
