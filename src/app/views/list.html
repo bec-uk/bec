@@ -6,15 +6,17 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Capacity</th>
                 <th>Meter</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="data in list.siteData track by $index">
-                <td data-title="ID">{{data.shortcode}}</td>
-                <td data-title="Issue">{{data.name}}</td>
-                <td data-title="Status">{{data.meterSerial}}</td>
+                <td data-title="#">{{data.shortcode}}</td>
+                <td data-title="Name">{{data.name}}</td>
+                <td data-title="Capacity">{{data.capacity}} kW</td>
+                <td data-title="Meter serial">{{data.meterSerial}}</td>
                 <td data-title="View">
                     <md-button class="md-raised md-primary" ui-sref='home.site({shortcode: data.shortcode})'>View</md-button>
                 </td>
