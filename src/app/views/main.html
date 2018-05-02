@@ -22,12 +22,16 @@
 
     </md-toolbar>
 
-    <md-progress-circular ng-hide="!apiLoading" md-mode="indeterminate" md-diameter="96"></md-progress-circular>
 
-    <a href='http://www.spiraledge.co.uk' style="margin-top: auto;" target="_blank" class='built-by'>
-        <h5>Built by:</h5>
-        <img src='/assets/images/se-logo.svg'>
-    </a>
+    <md-progress-circular ng-hide="!vm.isLoading()" md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+
+    <div class='built-by'>
+        <md-button class="clear-cache" ng-click="vm.clearCache()">Clear cache</md-button>
+        <a href='http://www.spiraledge.co.uk' target="_blank">
+            <h5>Built by:</h5>
+            <img src='/assets/images/se-logo.svg'>
+        </a>
+    </div>
 
 </md-sidenav>
 

@@ -38,9 +38,7 @@
               });
             }
             else {
-              $rootScope.apiLoading = true;
               return flowService.get(params).then(function() {
-                  $rootScope.apiLoading = false;
                   _storeCache(flowService.data, cacheKey);
                   return $q.resolve({
                     data: flowService.data

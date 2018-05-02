@@ -3,11 +3,11 @@
   angular
        .module('app')
        .controller('MainController', [
-          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$rootScope',
+          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$rootScope', '$http',
           MainController
        ]);
 
-  function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $rootScope) {
+  function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $rootScope, $http) {
     var vm = this;
 
     vm.menuItems = [ ];
@@ -19,14 +19,20 @@
     vm.toggleRightSidebar = toggleRightSidebar;
     vm.selectItem = selectItem;
     vm.selectSubItem = selectSubItem;
+    vm.clearCache = clearCache;
+    vm.isLoading = isLoading;
     $rootScope.fullScreen = false;
-    $rootScope.apiLoading = false;
 
     navService
       .loadAllItems()
       .then(function(menuItems) {
         vm.menuItems = [].concat(menuItems);
       });
+
+    function isLoading() {
+      console.log($http.pendingRequests);
+      return $http.pendingRequests.length !== 0;
+    }
 
     function toggleRightSidebar() {
         $mdSidenav('right').toggle();
@@ -84,6 +90,14 @@
           .position('bottom right')
       );
     }
+
+    function clearCache() {
+      // clearing
+      window.localStorage.clear();
+      vm.showSimpleToast("Cache cleared");
+    }
+
   }
+
 
 })();
