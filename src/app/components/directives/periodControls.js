@@ -29,8 +29,8 @@
 PeriodControlsController.$inject = ['$state','quantitiesService','dataService','sitesService','chartsService', '$scope'];
 
 function PeriodControlsController($state, quantitiesService, dataService, sitesService, chartsService, $scope) {
-    
-    var self = this;    
+
+    var self = this;
 
     self.params = dataService.getParams();
     self.resolutions = quantitiesService.resolutions;
@@ -47,7 +47,7 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
         if (parseInt($scope.multisite)) {
             dataService.setParams(self.params, self.selectedSites);
         } else {
-            dataService.setParams(self.params, [$state.params.shortcode]);            
+            dataService.setParams(self.params, [$state.params.shortcode]);
         }
     }
 
@@ -84,5 +84,9 @@ function PeriodControlsController($state, quantitiesService, dataService, sitesS
         angular.forEach(self.sites, function(site) {
             self.selectedSites.push(site.shortcode);
         });
+    }
+
+    self.selectNone = function() {
+        self.selectedSites = [];
     }
 }
