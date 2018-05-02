@@ -23,14 +23,9 @@
             let startDateString = _roundDateToResolution(params.exportStartDate, params.resolution);
             let endDateString = _roundDateToResolution(params.exportEndDate, params.resolution);
 
-            console.log(startDateString, endDateString);
-
             let cacheKey = (params.siteShortCode + startDateString + endDateString + params.resolution).replace(/[^A-Z0-9]/ig, "_");
-            // let cacheKey = (params.siteShortCode + params.exportStartDate + params.exportEndDate + params.resolution).replace(/[^A-Z0-9]/ig, "_");
 
             let cacheResult = _checkCache(cacheKey);
-
-            console.log(cacheResult);
 
             if(cacheResult.hit) {
               return $q.resolve({
@@ -84,10 +79,7 @@
             payload: payload,
             expiry: expiry
           }
-          console.log(cacheKey);
-          console.log(cacheItem);
           storage.setItem(cacheKey, JSON.stringify(cacheItem));
-          // storage.setItem("hello", "goodbye");
 
         }
 

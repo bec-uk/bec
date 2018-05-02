@@ -134,7 +134,6 @@
             //update data using simtricity service and request data from forecast service to merge into results
             return $q.all([
                 simtricityService.retrieve(params).then(function(simtricityResponse) {
-                    console.log(simtricityResponse);
                     var data = [];
                     for (var i = simtricityResponse.data.length - 1; i >= 0; i--) {
                         data.unshift([
@@ -229,7 +228,6 @@
 
         function removeSites(siteCodes) {
             angular.forEach(dataOriginal, function(data, site) {
-                console.log(siteCodes, site, siteCodes.indexOf(site));
                 if(siteCodes.indexOf(site) < 0) {
                     delete dataOriginal[site];
                 }

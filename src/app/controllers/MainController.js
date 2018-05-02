@@ -30,7 +30,6 @@
       });
 
     function isLoading() {
-      console.log($http.pendingRequests);
       return $http.pendingRequests.length !== 0;
     }
 

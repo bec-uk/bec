@@ -71,10 +71,10 @@
               y: function(d){ return d[1]; },
               useInteractiveGuideline: true,
               dispatch: {
-                  stateChange: function(e){ console.log("stateChange"); },
-                  changeState: function(e){ console.log("changeState"); },
-                  tooltipShow: function(e){ console.log("tooltipShow"); },
-                  tooltipHide: function(e){ console.log("tooltipHide"); }
+                  stateChange: function(e){},
+                  changeState: function(e){},
+                  tooltipShow: function(e){},
+                  tooltipHide: function(e){}
               },
               xAxis: {
                   axisLabel: 'Date',
