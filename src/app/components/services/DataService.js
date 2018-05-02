@@ -113,7 +113,7 @@
                     params.meterSerial = site.meterSerial;
                     params.siteShortCode = site.shortcode;
                     // check normalise parameter and set normalise divisor
-                    let normaliseDivisor = 1;
+                    var normaliseDivisor = 1;
                     if(params.normalise) {
                         normaliseDivisor = site.capacity;
                     }
@@ -192,7 +192,7 @@
         }
 
         function totalData(siteCode, normaliseDivisor) {
-            let total = dataOriginal[siteCode].reduce(function(accumulator, currentValue) {
+            var total = dataOriginal[siteCode].reduce(function(accumulator, currentValue) {
                 return accumulator + parseFloat(currentValue[1]);
             }, 0);
             dataTotalled[siteCode] = total / normaliseDivisor;

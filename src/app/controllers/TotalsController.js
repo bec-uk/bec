@@ -29,7 +29,7 @@
     //getters for chart data and options to bind to chart
     self.getChartSeries = function() {
         var allData = dataService.getTotalData();
-        let newSeries = [];
+        var newSeries = [];
         angular.forEach(allData, function(value, key) {
             newSeries.push({
                 label: sitesService.loadItemSync(key).name,

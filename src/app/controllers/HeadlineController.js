@@ -21,8 +21,8 @@
     self.quantities = quantitiesService;
 
     self.getData = function() {
-      let allData = dataService.getData();
-      let siteShortcode = $state.params.shortcode;
+      var allData = dataService.getData();
+      var siteShortcode = $state.params.shortcode;
       if(allData.hasOwnProperty(siteShortcode)) {
           return allData[siteShortcode];
       } else {
@@ -31,8 +31,8 @@
     }
 
     self.getOriginalData = function() {
-      let allData = dataService.getOriginalData();
-      let siteShortcode = $state.params.shortcode;
+      var allData = dataService.getOriginalData();
+      var siteShortcode = $state.params.shortcode;
       if(allData.hasOwnProperty(siteShortcode)) {
           return allData[siteShortcode];
       } else {

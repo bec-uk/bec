@@ -20,12 +20,12 @@
 
         function retrieve(params) {
 
-            let startDateString = _roundDateToResolution(params.exportStartDate, params.resolution);
-            let endDateString = _roundDateToResolution(params.exportEndDate, params.resolution);
+            var startDateString = _roundDateToResolution(params.exportStartDate, params.resolution);
+            var endDateString = _roundDateToResolution(params.exportEndDate, params.resolution);
 
-            let cacheKey = (params.siteShortCode + startDateString + endDateString + params.resolution).replace(/[^A-Z0-9]/ig, "_");
+            var cacheKey = (params.siteShortCode + startDateString + endDateString + params.resolution).replace(/[^A-Z0-9]/ig, "_");
 
-            let cacheResult = _checkCache(cacheKey);
+            var cacheResult = _checkCache(cacheKey);
 
             if(cacheResult.hit) {
               return $q.resolve({
@@ -51,16 +51,16 @@
 
         function _checkCache(cacheKey) {
 
-          let result = {
+          var result = {
             hit: false
           }
 
-          let storageContents = storage.getItem(cacheKey);
+          var storageContents = storage.getItem(cacheKey);
           if(!storageContents) {
             return result;
           }
 
-          let parsedContents = JSON.parse(storageContents)
+          var parsedContents = JSON.parse(storageContents)
           if (moment(parsedContents.expiry).isBefore(moment())) { // expired 
             storage.removeItem(cacheKey);
             return result;
@@ -74,8 +74,8 @@
 
         function _storeCache(payload, cacheKey) {
 
-          let expiry = moment().endOf("day").format("X"); // unix timestamp
-          let cacheItem = {
+          var expiry = moment().endOf("day").format("X"); // unix timestamp
+          var cacheItem = {
             payload: payload,
             expiry: expiry
           }
@@ -85,7 +85,7 @@
 
         function _roundDateToResolution(dateString, resolution) {
 
-          let dateMoment = moment(dateString);
+          var dateMoment = moment(dateString);
           switch(resolution) {
             case 'P1D':
             case "P1W":
