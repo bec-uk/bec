@@ -115,7 +115,10 @@
                     // check normalise parameter and set normalise divisor
                     var normaliseDivisor = 1;
                     if(params.normalise) {
+                        meta.unit.unit = "Normalised generation";
                         normaliseDivisor = site.capacity;
+                    } else {
+                        meta.unit.unit = "Energy generation";
                     }
                     updateData(site.shortcode).then(function() {
                         convertData(site.shortcode, normaliseDivisor);
