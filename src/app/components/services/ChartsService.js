@@ -90,6 +90,7 @@
                       return d3.format('.3r')(d);
                   },
               },
+              forceY: [0] // always show 0 on the line chart
           },
           title: {
               enable: true,
