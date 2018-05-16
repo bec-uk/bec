@@ -67,8 +67,21 @@
                   bottom: 40,
                   left: 55
               },
-              x: function(d){ return d[0]; },
-              y: function(d){ return d[1]; },
+              x: function(d){
+                if(typeof d !== 'undefined') {
+                  return d[0];
+                }
+                else {
+                  return "no data";
+                }
+              },
+              y: function(d){
+                if(typeof d !== 'undefined') {
+                  return d[1];
+                } else {
+                  return "no data";
+                }
+               },
               useInteractiveGuideline: true,
               dispatch: {
                   stateChange: function(e){},

@@ -83,7 +83,7 @@
             return $http.get(flowSvcUri).success(function(data) {
                 data = utilitiesService.GVIZToObjects(data);
                 // For half-hourly data we need to divide the Import values by 2 (they are in kW, so half to get kWh)
-                if (resolution === 'PT30M')
+                if (resolution === 'PT30M' && data !== null)
                 {
                     data = data.map(function(obj){
                         obj.Import /= 2;

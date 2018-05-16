@@ -124,9 +124,11 @@
                         convertData(site.shortcode, normaliseDivisor);
                         totalData(site.shortcode, normaliseDivisor);
                         // Update meta data for number of days based on data in dataConverted
-                        var firstMoment = moment(dataConverted[site.shortcode][0][0], "x");
-                        var lastMoment = moment(dataConverted[site.shortcode][dataConverted[site.shortcode].length - 1][0], "x");
-                        meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
+                        if(dataConverted[site.shortcode].length) {
+                            var firstMoment = moment(dataConverted[site.shortcode][0][0], "x");
+                            var lastMoment = moment(dataConverted[site.shortcode][dataConverted[site.shortcode].length - 1][0], "x");
+                            meta.duration.days = Math.ceil(moment.duration(lastMoment.diff(firstMoment)).asDays());
+                        }
                     });
                 });
             });
@@ -138,12 +140,14 @@
             return $q.all([
                 simtricityService.retrieve(params).then(function(simtricityResponse) {
                     var data = [];
-                    for (var i = simtricityResponse.data.length - 1; i >= 0; i--) {
-                        data.unshift([
-                            moment(simtricityResponse.data[i].Time).format('x'),
-                            simtricityResponse.data[i].Import// * units[params.unitIndex].factor
-                        ])
-                    };
+                    if(simtricityResponse.data !== null) {
+                        for (var i = simtricityResponse.data.length - 1; i >= 0; i--) {
+                            data.unshift([
+                                moment(simtricityResponse.data[i].Time).format('x'),
+                                simtricityResponse.data[i].Import// * units[params.unitIndex].factor
+                            ])
+                        };
+                    }
                     return data;
                 }),
                 forecastService.retrieve(params).then(function() {
