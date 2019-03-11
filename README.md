@@ -40,11 +40,11 @@ To retrieve data from Simtricity an API key/access token is required.  This shou
 
 ## Proxy Setup
 
-The project currently depends on a proxy server to access the simtricity API and overcome cross-domain issues. The proxy is currently written in PHP so requires a PHP server to work. The proxy-local.php (in the project root) server must currently be available at http://simtricity_proxy.local:8888. This hard-coded address can be altered in /src/app/services/ReadingService.js
+The project currently depends on a proxy server to access the simtricity API and overcome cross-domain issues.  The proxy is currently written in PHP so requires a PHP server to work.  We hard-code the address of our fully deployed website rather than running the proxy locally, but this can be altered in /src/app/services files FlowService.js and ReadingService.js.
 
 When the standalone project is built it includes the appropriate proxy server which will work as long as the files are deployed on a PHP server.
 
-This system should be improved in future versions.
+Note: The fully deployed proxy allows requests from any host and we are exploiting that for local builds.  Really this should be closed down so that only the local host can use the proxy.
 
 ## Note about Routing/HTML5 Push States
 

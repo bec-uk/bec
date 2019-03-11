@@ -129,6 +129,42 @@
           },
           capacity: 26.4
       },
+      {
+          id: 10,
+          shortcode: 'jsb5',
+          name: 'Ashley Unit 5',
+          meterSerial: 16048252,
+          address: 'St Werburghs',
+          location: {
+            latitude: 51.469655,
+            longitude: -2.579176
+          },
+          capacity: 49.68
+      },
+      {
+          id: 11,
+          shortcode: 'jsb6',
+          name: 'Ashley Unit 6',
+          meterSerial: 16062392,
+          address: 'St Werburghs',
+          location: {
+            latitude: 51.469655,
+            longitude: -2.579176
+          },
+          capacity: 49.68
+      },
+      {
+          id: 12,
+          shortcode: 'jsb7',
+          name: 'Ashley Unit 7',
+          meterSerial: 16062393,
+          address: 'St Werburghs',
+          location: {
+            latitude: 51.469655,
+            longitude: -2.579176
+          },
+          capacity: 38.64
+      },
     ];
 
     return {
