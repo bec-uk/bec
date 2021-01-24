@@ -26,7 +26,7 @@
             var port = $location.port().toString();
 
             if (port.substring(0,2) === '30')
-                var simHost = 'http://livegen.bristolenergy.coop/proxy.php';
+                var simHost = '//livegen.bristolenergy.coop/proxy.php';
             else
                 var simHost = '/proxy.php/';
 
@@ -99,7 +99,7 @@
             var flowTokens = null;
 
             // Retrieve flow tokens from bec-monitoring back-end
-            var tokenUri = 'http://livegen.bristolenergy.coop/services/data.php?dataset=simtricity_flows&site_shortcode=' + siteShortCode;
+            var tokenUri = '//livegen.bristolenergy.coop/services/data.php?dataset=simtricity_flows&site_shortcode=' + siteShortCode;
             return $http.get(tokenUri).success(function(data) {
                 service.flowTokens = data[0];
             });

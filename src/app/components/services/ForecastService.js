@@ -18,7 +18,7 @@
 
         function retrieve(params) {
             
-            var endpoint = 'http://livegen.bristolenergy.coop/services/data.php';
+            var endpoint = '//livegen.bristolenergy.coop/services/data.php';
             var forecastMethod = 'forecast'; //only this method supported for now (filton/create centre also available)
             var forecastStartDate = '';
             var forecastEndDate = '';

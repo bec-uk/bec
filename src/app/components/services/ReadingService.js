@@ -22,7 +22,7 @@
         var port = $location.port().toString();
         
         if(port.substring(0,2) === '30')
-            var simHost = 'http://livegen.bristolenergy.coop/proxy.php';
+            var simHost = '//livegen.bristolenergy.coop/proxy.php';
         else
             var simHost = '/proxy.php/';
 
